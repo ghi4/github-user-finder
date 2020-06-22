@@ -1,16 +1,15 @@
 package com.dhimas.githubsuserfinder
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dhimas.githubsuserfinder.SearchResultAdapter.ViewHolder
+import com.dhimas.githubsuserfinder.UserAdapter.ViewHolder
 import com.dhimas.githubsuserfinder.data.model.User
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class SearchResultAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<ViewHolder>() {
+class UserAdapter(private val listUser: ArrayList<User>): RecyclerView.Adapter<ViewHolder>() {
     private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){

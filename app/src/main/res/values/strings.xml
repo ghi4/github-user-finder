@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Githubs User Finder</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
 </resources>
