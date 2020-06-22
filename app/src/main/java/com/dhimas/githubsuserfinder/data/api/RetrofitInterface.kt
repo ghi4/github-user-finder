@@ -1,7 +1,7 @@
-package com.dhimas.githubsuserfinder.api
+package com.dhimas.githubsuserfinder.data.api
 
-import com.dhimas.githubsuserfinder.model.SearchResult
-import com.dhimas.githubsuserfinder.model.User
+import com.dhimas.githubsuserfinder.data.model.SearchResult
+import com.dhimas.githubsuserfinder.data.model.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.api
+package com.dhimas.githubsuserfinder.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

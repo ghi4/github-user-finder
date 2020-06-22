@@ -1,21 +1,21 @@
-package com.dhimas.githubsuserfinder.model
+package com.dhimas.githubsuserfinder.data.model
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 class User {
     @SerializedName("login")
-    private val username: String? = null
+    val username: String? = null
 
     @SerializedName("name")
-    private val name: String? = null
+    val name: String? = null
 
     @SerializedName("avatar_url")
-    private val avatar_url: String? = null
+    val avatar_url: String? = null
 
     @SerializedName("company")
-    private val company: String? = null
+    val company: String? = null
 
     @SerializedName("location")
-    private val location: String? = null
+    val location: String? = null
 }
