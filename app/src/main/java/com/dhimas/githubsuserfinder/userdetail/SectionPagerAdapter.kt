@@ -8,12 +8,15 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.userdetail.fragment.FollowFragment
 
-class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager, val username: String): FragmentPagerAdapter(fm) {
-
+class SectionPagerAdapter(
+    private val mContext: Context,
+    fm: FragmentManager,
+    private val username: String
+) : FragmentPagerAdapter(fm) {
 
 
     @StringRes
-    private val TAB_TITLES = intArrayOf(
+    private val tabTitle = intArrayOf(
         R.string.follower,
         R.string.following
     )
@@ -21,7 +24,7 @@ class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager, va
     override fun getItem(position: Int): Fragment {
 
         var fragment: Fragment? = null
-        when(position){
+        when (position) {
             0 -> fragment = FollowFragment.newInstance(0, username)
             1 -> fragment = FollowFragment.newInstance(1, username)
         }
@@ -29,7 +32,7 @@ class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager, va
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return mContext.resources.getString(TAB_TITLES[position])
+        return mContext.resources.getString(tabTitle[position])
     }
 
     override fun getCount(): Int = 2

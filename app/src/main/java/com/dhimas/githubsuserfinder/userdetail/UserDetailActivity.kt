@@ -13,25 +13,24 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserDetailActivity : AppCompatActivity() {
-    var username: String = ""
-    var list: ArrayList<User>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
 
-        username = intent.getStringExtra(KEY_USERNAME)
+        val username = intent.getStringExtra(KEY_USERNAME)
 
-        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
-        viewPager.adapter = sectionPagerAdapter
-        tabs.setupWithViewPager(viewPager)
+        if(username != null) {
+            val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
+            viewPager.adapter = sectionPagerAdapter
+            tabs.setupWithViewPager(viewPager)
 
-        supportActionBar?.elevation = 0f
+            supportActionBar?.elevation = 0f
 
-        apiLoadTest()
+            apiLoadTest(username)
+        }
     }
 
-    fun apiLoadTest(){
+    fun apiLoadTest(username: String) {
         val service = RetrofitFactory.makeRetrofitService()
         val call = service.getUserDetail(username)
         call.enqueue(object : Callback<User> {
@@ -40,13 +39,13 @@ class UserDetailActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
-                val response = response.body()
-                if(response != null){
+                val user = response.body()
+                if (user != null) {
                     Picasso.get()
-                        .load(response.avatar_url)
+                        .load(user.avatarUrl)
                         .into(iv_avatar)
-                    tv_name.text = response.name
-                    tv_username.text = response.username
+                    tv_name.text = user.name
+                    tv_username.text = user.username
                 }
             }
         })

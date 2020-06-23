@@ -14,12 +14,9 @@ interface RetrofitInterface {
     @GET("users/{username}")
     fun getUserDetail(@Path("username") username: String?): Call<User>
 
-    @GET("users/{username}/followers")
-    fun getUserFollower(@Path("username") username: String): Call<SearchResult>
-
-    @GET("users/{username}/following")
-    fun getUserFollowing(@Path("username") username: String): Call<SearchResult>
-
     @GET("users/{username}/{follow}")
-    fun getUserFollow(@Path("username") username: String?, @Path("follow") follow: String): Call<ArrayList<User>>
+    fun getUserFollow(
+        @Path("username") username: String,
+        @Path("follow") follow: String
+    ): Call<ArrayList<User>>
 }

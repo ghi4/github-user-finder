@@ -1,7 +1,6 @@
 package com.dhimas.githubsuserfinder.data.model
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 class User {
     @SerializedName("login")
@@ -11,7 +10,7 @@ class User {
     val name: String? = null
 
     @SerializedName("avatar_url")
-    val avatar_url: String? = null
+    val avatarUrl: String? = null
 
     @SerializedName("company")
     val company: String? = null

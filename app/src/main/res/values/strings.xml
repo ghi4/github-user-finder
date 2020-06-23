@@ -2,4 +2,6 @@
     <string name="app_name">Githubs User Finder</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
+    <string name="loading">loading</string>
+    <string name="avatar_photo">avatar photo</string>
 </resources>
