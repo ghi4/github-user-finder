@@ -1,5 +1,6 @@
 package com.dhimas.githubsuserfinder.data.model
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
     private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setUser(users: ArrayList<User>) {
+        Log.d("Info", "In Adapter: ${users.size}")
         listUser.clear()
         listUser.addAll(users)
         notifyDataSetChanged()

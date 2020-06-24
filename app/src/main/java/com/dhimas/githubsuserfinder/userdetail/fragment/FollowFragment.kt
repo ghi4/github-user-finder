@@ -47,25 +47,34 @@ class FollowFragment : Fragment() {
 
         if (arguments != null) {
             type = arguments?.getInt(ARG_TYPE, 0) as Int
+            Log.d("Info", "Type: $type")
             username = arguments?.getString(ARG_USERNAME) as String
         }
 
-        userAdapter = UserAdapter()
-        userAdapter.notifyDataSetChanged()
-
-        rv_follow.layoutManager = LinearLayoutManager(activity!!.applicationContext!!)
+        rv_follow.setHasFixedSize(true)
+        rv_follow.layoutManager = LinearLayoutManager(context)
         rv_follow.adapter = userAdapter
 
-        when (type) {
-            0 -> viewModel.setUsername(username, "followers")
-            1 -> viewModel.setUsername(username, "following")
-        }
+        viewModel.setUsername(username)
 
-        viewModel.getUsers().observe(viewLifecycleOwner, Observer { users ->
-            if (users != null) {
-                Log.d("Info", "In observer: ${users.size} and ${users[0].username} ")
-                userAdapter.setUser(users)
+        when (type) {
+            0 -> {
+                userAdapter.notifyDataSetChanged()
+                viewModel.getFollowers().observe(viewLifecycleOwner, Observer { users ->
+                    if (users != null) {
+                        userAdapter.setUser(users)
+                    }
+                })
             }
-        })
+
+            1 -> {
+                userAdapter.notifyDataSetChanged()
+                viewModel.getFollowing().observe(viewLifecycleOwner, Observer { userz ->
+                    if (userz != null) {
+                        userAdapter.setUser(userz)
+                    }
+                })
+            }
+        }
     }
 }
