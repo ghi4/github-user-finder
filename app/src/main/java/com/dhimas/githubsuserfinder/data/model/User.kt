@@ -17,4 +17,7 @@ class User {
 
     @SerializedName("location")
     val location: String? = null
+
+    @SerializedName("public_repos")
+    val repo_count: String? = null
 }

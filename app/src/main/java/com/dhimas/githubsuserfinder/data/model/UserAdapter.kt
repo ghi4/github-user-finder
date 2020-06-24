@@ -15,7 +15,6 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
     private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setUser(users: ArrayList<User>) {
-        Log.d("Info", "In Adapter: ${users.size}")
         listUser.clear()
         listUser.addAll(users)
         notifyDataSetChanged()
@@ -42,6 +41,7 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
                 Picasso.get()
                     .load(user.avatarUrl)
                     .resize(60, 60)
+                    .placeholder(R.drawable.octocat1)
                     .into(iv_avatar)
                 tv_username.text = user.username
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User Finder</string>
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="loading">Memuat</string>
+    <string name="avatar_photo">foto profil</string>
+    <string name="company_icon">ikon perusahaan</string>
+    <string name="location_icon">ikon lokasi</string>
+    <string name="language_settings">Ubah Bahasa</string>
+    <string name="query_hint">Ketik nama pengguna</string>
+    <string name="user_detail">Detil Pengguna</string>
+</resources>

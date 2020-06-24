@@ -1,6 +1,7 @@
 package com.dhimas.githubsuserfinder.userdetail
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,17 +32,35 @@ class UserDetailActivity : AppCompatActivity() {
 
             viewModel.setUsername(username)
 
+            Picasso.get()
+                .load(R.drawable.octocat1)
+                .resize(120,120)
+                .into(iv_avatar)
             viewModel.getUser().observe(this, Observer{ user ->
                 loadToView(user)
             })
         }
     }
 
-    fun loadToView(user: User){
-            Picasso.get()
-                .load(user.avatarUrl)
-                .into(iv_avatar)
-            tv_name.text = user.name
-            tv_username.text = user.username
+    private fun loadToView(user: User){
+        Picasso.get()
+            .load(user.avatarUrl)
+            .placeholder(R.drawable.octocat1)
+            .resize(120,120)
+            .into(iv_avatar)
+        tv_name.text = user.name
+        tv_username.text = user.username
+        tv_company.text = user.company
+        tv_location.text = user.location
+
+        if(user.name.isNullOrEmpty()){
+            tv_name.visibility = View.GONE
+        }
+        if(user.company.isNullOrEmpty()){
+            linear_company.visibility = View.GONE
+        }
+        if(user.location.isNullOrEmpty()){
+            linear_location.visibility = View.GONE
+        }
     }
 }

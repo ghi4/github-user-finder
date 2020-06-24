@@ -17,7 +17,7 @@ interface RetrofitInterface {
     @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
     fun getUserDetail(@Path("username") username: String?): Call<User>
 
-    @GET("users/{username}/{follow}")
+    @GET("users/{username}/{follow}?page=1&per_page=1000")
     @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
     fun getUserFollow(
         @Path("username") username: String,

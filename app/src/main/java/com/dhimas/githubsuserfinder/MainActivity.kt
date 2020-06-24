@@ -2,7 +2,11 @@ package com.dhimas.githubsuserfinder
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(keyword: String?): Boolean {
                 if (keyword != null) {
+                    progressBar.visibility = View.VISIBLE
                     viewModel.setKeyword(keyword)
                 }
                 return false
@@ -41,8 +46,11 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(keyword: String?): Boolean {
                 textChangeTimer.cancel()
                 textChangeTimer = Timer()
+
+                if(!keyword.isNullOrEmpty()){
+                progressBar.visibility = View.VISIBLE
+
                 textChangeTimer.schedule(500){
-                    if(!keyword.isNullOrEmpty()){
                         viewModel.setKeyword(keyword)
                     }
                 }
@@ -59,10 +67,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getUsers().observe(this, Observer { users ->
             if(users != null){
-                Log.d("Info", "$users")
                 userAdapter.notifyDataSetChanged()
                 rv_searchResult.scheduleLayoutAnimation()
                 userAdapter.setUser(users)
+                progressBar.visibility = View.GONE
             }
         })
     }
@@ -75,5 +83,18 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_USERNAME: String = "KEY_USERNAME"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_change_settings){
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

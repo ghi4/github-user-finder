@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">Githubs User Finder</string>
+    <string name="app_name">Github User Finder</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
     <string name="loading">loading</string>
     <string name="avatar_photo">avatar photo</string>
+    <string name="company_icon">company icon</string>
+    <string name="location_icon">location icon</string>
+    <string name="language_settings">Change language setting</string>
+    <string name="query_hint">Type username here</string>
+    <string name="user_detail">User Detail</string>
 </resources>
