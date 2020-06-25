@@ -30,7 +30,6 @@ class MainViewModel: ViewModel() {
     }
 
     fun getUsers(): MutableLiveData<ArrayList<User>> {
-        Log.d("Info", "Yeay Call getUser")
         return listUsers
     }
 }

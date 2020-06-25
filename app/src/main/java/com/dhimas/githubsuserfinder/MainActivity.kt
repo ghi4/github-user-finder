@@ -3,7 +3,6 @@ package com.dhimas.githubsuserfinder
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,70 +18,45 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.schedule
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
+    UserAdapter.OnItemClickCallback {
     private lateinit var viewModel: MainViewModel
     private var userAdapter = UserAdapter()
     private var textChangeTimer = Timer()
+
+    companion object {
+        const val KEY_USERNAME: String = "KEY_USERNAME"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+        setupUI()
+        viewModelObserver()
+    }
+
+    private fun setupUI(){
         rv_searchResult.setHasFixedSize(true)
         rv_searchResult.layoutManager = LinearLayoutManager(this)
         rv_searchResult.adapter = userAdapter
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        searchView.setOnQueryTextListener(this)
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(keyword: String?): Boolean {
-                if (keyword != null) {
-                    progressBar.visibility = View.VISIBLE
-                    viewModel.setKeyword(keyword)
-                }
-                return false
-            }
+        userAdapter.setOnItemClickCallback(this)
+    }
 
-            override fun onQueryTextChange(keyword: String?): Boolean {
-                textChangeTimer.cancel()
-                textChangeTimer = Timer()
-
-                if(!keyword.isNullOrEmpty()){
-                progressBar.visibility = View.VISIBLE
-
-                textChangeTimer.schedule(500){
-                        viewModel.setKeyword(keyword)
-                    }
-                }
-
-                return false
-            }
-        })
-
-        userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onItemClicked(user: User) {
-                showUser(user)
-            }
-        })
-
+    private fun viewModelObserver(){
         viewModel.getUsers().observe(this, Observer { users ->
             if(users != null){
                 userAdapter.notifyDataSetChanged()
                 rv_searchResult.scheduleLayoutAnimation()
-                userAdapter.setUser(users)
+                userAdapter.setListUser(users)
                 progressBar.visibility = View.GONE
-            }
+            }else progressBar.visibility = View.GONE
         })
-    }
-
-    fun showUser(user: User) {
-        val intent = Intent(this, UserDetailActivity::class.java)
-        intent.putExtra(KEY_USERNAME, user.username)
-        startActivity(intent)
-    }
-
-    companion object {
-        const val KEY_USERNAME: String = "KEY_USERNAME"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -96,5 +70,33 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onQueryTextSubmit(keyword: String?): Boolean {
+        if (keyword != null) {
+            progressBar.visibility = View.VISIBLE
+            viewModel.setKeyword(keyword)
+        }
+        return false
+    }
+
+    override fun onQueryTextChange(keyword: String?): Boolean {
+        textChangeTimer.cancel()
+        textChangeTimer = Timer()
+
+        if(!keyword.isNullOrEmpty()){
+            progressBar.visibility = View.VISIBLE
+            textChangeTimer.schedule(500){
+                viewModel.setKeyword(keyword)
+            }
+        }else progressBar.visibility = View.GONE
+
+        return false
+    }
+
+    override fun onItemClicked(user: User) {
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(KEY_USERNAME, user.username)
+        startActivity(intent)
     }
 }

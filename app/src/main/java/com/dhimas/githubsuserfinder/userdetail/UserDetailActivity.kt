@@ -18,28 +18,32 @@ class UserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
 
-        val username = intent.getStringExtra(KEY_USERNAME)
-
+        val username = intent.getStringExtra(KEY_USERNAME) ?: ""
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(UserDetailViewModel::class.java)
+        viewModel.setUsername(username)
 
-        if(username != null) {
-            val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
-            viewPager.adapter = sectionPagerAdapter
-            tabs.setupWithViewPager(viewPager)
+        setupUI(username)
+        viewModelObserver()
+    }
 
-            supportActionBar?.elevation = 0f
+    private fun setupUI(username: String){
+        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
+        viewPager.adapter = sectionPagerAdapter
+        tabs.setupWithViewPager(viewPager)
 
-            viewModel.setUsername(username)
+        supportActionBar?.elevation = 0f
 
-            Picasso.get()
-                .load(R.drawable.octocat1)
-                .resize(120,120)
-                .into(iv_avatar)
-            viewModel.getUser().observe(this, Observer{ user ->
-                loadToView(user)
-            })
-        }
+        Picasso.get()
+            .load(R.drawable.octocat1)
+            .resize(120,120)
+            .into(iv_avatar)
+    }
+
+    private fun viewModelObserver(){
+        viewModel.getUser().observe(this, Observer{ user ->
+            loadToView(user)
+        })
     }
 
     private fun loadToView(user: User){
@@ -63,4 +67,10 @@ class UserDetailActivity : AppCompatActivity() {
             linear_location.visibility = View.GONE
         }
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
+
 }

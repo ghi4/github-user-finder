@@ -11,13 +11,16 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 
 class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
-    private val listUser = ArrayList<User>()
+    private var listUser = ArrayList<User>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setUser(users: ArrayList<User>) {
+    fun setListUser(users: ArrayList<User>) {
         listUser.clear()
         listUser.addAll(users)
-        notifyDataSetChanged()
+    }
+
+    fun clearUser(){
+        listUser.clear()
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -55,4 +58,6 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
     interface OnItemClickCallback {
         fun onItemClicked(user: User)
     }
+
+
 }
