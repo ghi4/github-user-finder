@@ -19,7 +19,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
-    UserAdapter.OnItemClickCallback {
+    UserAdapter.OnUserClickCallback {
     private lateinit var viewModel: MainViewModel
     private var userAdapter = UserAdapter()
     private var textChangeTimer = Timer()
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         searchView.setOnQueryTextListener(this)
 
-        userAdapter.setOnItemClickCallback(this)
+        userAdapter.setOnUserClickCallback(this)
     }
 
     private fun viewModelObserver(){
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             if(users != null){
                 userAdapter.notifyDataSetChanged()
                 rv_searchResult.scheduleLayoutAnimation()
+
                 userAdapter.setListUser(users)
                 progressBar.visibility = View.GONE
             }else progressBar.visibility = View.GONE
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         return false
     }
 
-    override fun onItemClicked(user: User) {
+    override fun onUserClicked(user: User) {
         val intent = Intent(this, UserDetailActivity::class.java)
         intent.putExtra(KEY_USERNAME, user.username)
         startActivity(intent)

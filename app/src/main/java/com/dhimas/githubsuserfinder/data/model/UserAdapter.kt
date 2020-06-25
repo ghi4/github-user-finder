@@ -1,18 +1,17 @@
 package com.dhimas.githubsuserfinder.data.model
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.UserAdapter.ViewHolder
+import com.dhimas.githubsuserfinder.data.model.UserAdapter.UserViewHolder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 
-class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
     private var listUser = ArrayList<User>()
-    private var onItemClickCallback: OnItemClickCallback? = null
+    private var onUserClickCallback: OnUserClickCallback? = null
 
     fun setListUser(users: ArrayList<User>) {
         listUser.clear()
@@ -23,22 +22,22 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
         listUser.clear()
     }
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
+    fun setOnUserClickCallback(onUserClickCallback: OnUserClickCallback) {
+        this.onUserClickCallback = onUserClickCallback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
-        return ViewHolder(view)
+        return UserViewHolder(view)
     }
 
     override fun getItemCount(): Int = listUser.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(listUser[position])
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
             with(itemView) {
                 Picasso.get()
@@ -49,15 +48,14 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder>() {
                 tv_username.text = user.username
 
                 itemView.setOnClickListener {
-                    onItemClickCallback?.onItemClicked(user)
+                    onUserClickCallback?.onUserClicked(user)
                 }
             }
         }
     }
 
-    interface OnItemClickCallback {
-        fun onItemClicked(user: User)
+    interface OnUserClickCallback {
+        fun onUserClicked(user: User)
     }
-
 
 }

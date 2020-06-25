@@ -3,11 +3,19 @@
     <string name="app_name">Github User Finder</string>
     <string name="follower">Pengikut</string>
     <string name="following">Mengikuti</string>
+    <string name="repository">Penyimpanan</string>
     <string name="loading">Memuat</string>
-    <string name="avatar_photo">foto profil</string>
-    <string name="company_icon">ikon perusahaan</string>
-    <string name="location_icon">ikon lokasi</string>
+    <string name="avatar_photo">Foto profil</string>
+    <string name="company_icon">Ikon perusahaan</string>
+    <string name="location_icon">Ikon lokasi</string>
     <string name="language_settings">Ubah Bahasa</string>
     <string name="query_hint">Ketik nama pengguna</string>
     <string name="user_detail">Detil Pengguna</string>
+    <string name="no_description">Tidak ada deskripsi</string>
+    <string name="percon_icon">Ikon Orang</string>
+    <string name="no_follower_yet">Belum Ada Pengikut</string>
+    <string name="not_following_yet">Belum Mengikuti Siapapun</string>
+    <string name="avatar_of_the_user">Foto profil pengguna</string>
+    <string name="repository_icon">Ikon Penyimpanan</string>
+    <string name="no_repository_yet">Penyimpanan Masih Kosong</string>
 </resources>

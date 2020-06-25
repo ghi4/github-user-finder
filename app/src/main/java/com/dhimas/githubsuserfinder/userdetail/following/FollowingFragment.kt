@@ -51,7 +51,7 @@ class FollowingFragment : Fragment() {
         rv_following.adapter = userAdapter
 
         progressBarFollowing.visibility = View.VISIBLE
-        linear_info.visibility = View.GONE
+        tv_follow.visibility = View.GONE
     }
 
     private fun viewModelObserver(){
@@ -60,7 +60,7 @@ class FollowingFragment : Fragment() {
             activity!!.tabs.getTabAt(1)!!.text = newTitle
 
             if (users.isNotEmpty()) {
-                linear_info.visibility = View.GONE
+                tv_follow.visibility = View.GONE
 
                 userAdapter.setListUser(users)
                 userAdapter.notifyDataSetChanged()
@@ -69,7 +69,7 @@ class FollowingFragment : Fragment() {
                 progressBarFollowing.visibility = View.GONE
             }else{
                 progressBarFollowing.visibility = View.GONE
-                linear_info.visibility = View.VISIBLE
+                tv_follow.visibility = View.VISIBLE
             }
         })
     }

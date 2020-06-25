@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".userdetail.following.FollowingFragment">
+    tools:context=".userdetail.repo.RepoFragment">
 
     <com.mlsdev.animatedrv.AnimatedRecyclerView
-        android:id="@+id/rv_following"
-        android:layoutAnimation="@anim/layout_animation_from_bottom_scale"
+        android:id="@+id/rv_repo"
         app:animationDuration="600"
         app:layoutManagerOrientation="vertical"
         app:layoutManagerReverse="false"
@@ -17,19 +16,19 @@
         android:layout_height="match_parent" />
 
     <ProgressBar
-        android:id="@+id/progressBarFollowing"
+        android:id="@+id/progressBarRepo"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/tv_follow"
+        android:id="@+id/tv_repo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableTop="@drawable/ic_person"
+        android:drawableTop="@drawable/ic_baseline_folder_24"
         android:gravity="center"
-        android:text="@string/not_following_yet" />
+        android:text="@string/no_repository_yet" />
 
 </FrameLayout>

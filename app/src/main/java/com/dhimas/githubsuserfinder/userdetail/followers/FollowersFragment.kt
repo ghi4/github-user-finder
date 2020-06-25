@@ -1,7 +1,6 @@
 package com.dhimas.githubsuserfinder.userdetail.followers
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
-import com.dhimas.githubsuserfinder.userdetail.following.FollowingFragment
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.followers_fragment.*
 
 class FollowersFragment : Fragment() {
+    private lateinit var viewModel: FollowViewModel
+    private var userAdapter = UserAdapter()
 
     companion object {
-        private lateinit var viewModel: FollowViewModel
-        private var userAdapter = UserAdapter()
         private var username = ""
 
         fun newInstance(username: String): FollowersFragment {
@@ -53,7 +51,7 @@ class FollowersFragment : Fragment() {
         rv_followers.adapter = userAdapter
 
         progressBarFollowers.visibility = View.VISIBLE
-        linear_info.visibility = View.GONE
+        tv_follow.visibility = View.GONE
     }
 
     private fun viewModelObserver(){
@@ -62,7 +60,7 @@ class FollowersFragment : Fragment() {
             activity!!.tabs.getTabAt(0)!!.text = newTitle
 
             if (users.isNotEmpty()) {
-                linear_info.visibility = View.GONE
+                tv_follow.visibility = View.GONE
 
                 userAdapter.setListUser(users)
                 userAdapter.notifyDataSetChanged()
@@ -72,7 +70,7 @@ class FollowersFragment : Fragment() {
 
             }else{
                 progressBarFollowers.visibility = View.GONE
-                linear_info.visibility = View.VISIBLE
+                tv_follow.visibility = View.VISIBLE
             }
         })
     }

@@ -18,7 +18,7 @@ class MainViewModel: ViewModel() {
         val call = service.getSearchResult(keyword)
         call.enqueue(object : Callback<SearchResult>{
             override fun onFailure(call: Call<SearchResult>, t: Throwable) {
-                Log.d("Info", t.message.toString())
+                Log.d("Throwable", t.message.toString())
             }
 
             override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {

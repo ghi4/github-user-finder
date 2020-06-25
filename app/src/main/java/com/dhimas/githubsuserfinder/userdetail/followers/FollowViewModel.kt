@@ -32,7 +32,6 @@ class FollowViewModel : ViewModel() {
             override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                 if (response.isSuccessful) {
                     listUser?.postValue(response.body() as ArrayList<User>)
-                    Log.d("Info", "Array: ${response.body()!!.size} " )
                 }
             }
         })
