@@ -3,11 +3,12 @@ package com.dhimas.githubsuserfinder.data.model
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dhimas.githubsuserfinder.R
 import kotlinx.android.synthetic.main.item_repo.view.*
 
-class RepoAdapter : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+class RepoAdapter(val ctx: FragmentActivity?) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
     private var listRepo = ArrayList<Repo>()
 
     fun setListRepo(repos: ArrayList<Repo>) {
@@ -33,8 +34,11 @@ class RepoAdapter : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
     inner class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(repo: Repo) {
             with(itemView) {
+                val noDesc = ctx!!.application.resources.getString(R.string.no_description)
                 tv_repo_name.text = repo.name
-                tv_repo_desc.text = repo.description ?: "No Description"
+                if (tv_repo_desc.text != null) {
+                    tv_repo_desc.text = repo.description ?: noDesc
+                }
             }
         }
     }

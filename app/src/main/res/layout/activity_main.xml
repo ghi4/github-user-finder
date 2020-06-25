@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/photo_of_octocat_from_github"
+        app:layout_constraintBottom_toTopOf="@+id/rv_searchResult"
+        app:layout_constraintEnd_toStartOf="@+id/rv_searchResult"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rv_searchResult"
+        app:layout_constraintTop_toBottomOf="@+id/rv_searchResult"
+        app:srcCompat="@drawable/octocat2" />
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"

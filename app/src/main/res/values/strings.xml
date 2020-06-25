@@ -15,4 +15,5 @@
     <string name="not_following_yet">Not Following Yet</string>
     <string name="avatar_of_the_user">Avatar of the user</string>
     <string name="no_repository_yet">No Repository Yet</string>
+    <string name="photo_of_octocat_from_github">Photo of Octocat from Github</string>
 </resources>

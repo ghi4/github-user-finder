@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.repo_fragment.*
 
 class RepoFragment : Fragment() {
     private lateinit var viewModel: RepoViewModel
-    private var repoAdapter = RepoAdapter()
+    private lateinit var repoAdapter: RepoAdapter
 
     companion object {
         private var username = ""
@@ -37,6 +37,8 @@ class RepoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        repoAdapter = RepoAdapter(activity)
         repoAdapter.clearRepo()
         viewModel = ViewModelProvider(this).get(RepoViewModel::class.java)
 

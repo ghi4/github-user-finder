@@ -6,6 +6,8 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -15,14 +17,12 @@ import com.dhimas.githubsuserfinder.data.model.User
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
 import com.dhimas.githubsuserfinder.userdetail.UserDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     UserAdapter.OnUserClickCallback {
     private lateinit var viewModel: MainViewModel
-    private var userAdapter = UserAdapter()
-    private var textChangeTimer = Timer()
+    private lateinit var userAdapter: UserAdapter
+    private var boolOctocat: Boolean = true
 
     companion object {
         const val KEY_USERNAME: String = "KEY_USERNAME"
@@ -39,9 +39,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         setupUI()
         viewModelObserver()
+
     }
 
     private fun setupUI() {
+        userAdapter = UserAdapter()
+
         rv_searchResult.setHasFixedSize(true)
         rv_searchResult.layoutManager = LinearLayoutManager(this)
         rv_searchResult.adapter = userAdapter
@@ -79,20 +82,17 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     override fun onQueryTextSubmit(keyword: String?): Boolean {
         if (keyword != null) {
             progressBar.visibility = View.VISIBLE
-            viewModel.setKeyword(keyword)
+            viewModel.setKeywordPressed(keyword)
         }
         return false
     }
 
     override fun onQueryTextChange(keyword: String?): Boolean {
-        textChangeTimer.cancel()
-        textChangeTimer = Timer()
-
         if (!keyword.isNullOrEmpty()) {
+            showOctocat(boolOctocat)
             progressBar.visibility = View.VISIBLE
-            textChangeTimer.schedule(500) {
-                viewModel.setKeyword(keyword)
-            }
+
+            viewModel.setKeyword(keyword)
         } else progressBar.visibility = View.GONE
 
         return false
@@ -102,5 +102,27 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         val intent = Intent(this, UserDetailActivity::class.java)
         intent.putExtra(KEY_USERNAME, user.username)
         startActivity(intent)
+    }
+
+    private fun showOctocat(boolean: Boolean) {
+        if (boolean) {
+            val anim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_out)
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                    //Nothing to do
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    imageView.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    //Nothing to do
+                }
+
+            })
+            imageView.startAnimation(anim)
+            boolOctocat = false
+        }
     }
 }

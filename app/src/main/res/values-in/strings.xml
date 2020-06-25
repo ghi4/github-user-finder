@@ -16,4 +16,5 @@
     <string name="not_following_yet">Belum Mengikuti Siapapun</string>
     <string name="avatar_of_the_user">Foto profil pengguna</string>
     <string name="no_repository_yet">Penyimpanan Masih Kosong</string>
+    <string name="photo_of_octocat_from_github">Foto Octocat dari Github</string>
 </resources>

@@ -9,12 +9,27 @@ import com.dhimas.githubsuserfinder.data.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainViewModel : ViewModel() {
     private var listUsers = MutableLiveData<ArrayList<User>>()
+    private var textChangeTimer = Timer()
+
+    fun setKeywordPressed(keyword: String) {
+        textChangeTimer.cancel()
+        loadData(keyword)
+    }
 
     fun setKeyword(keyword: String) {
+        textChangeTimer.cancel()
+        textChangeTimer = Timer()
+        textChangeTimer.schedule(500) {
+            loadData(keyword)
+        }
+    }
 
+    private fun loadData(keyword: String) {
         val service = RetrofitFactory.makeRetrofitService()
         val call = service.getSearchResult(keyword)
         call.enqueue(object : Callback<SearchResult> {
@@ -22,7 +37,10 @@ class MainViewModel : ViewModel() {
                 Log.d("Throwable", t.message.toString())
             }
 
-            override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
+            override fun onResponse(
+                call: Call<SearchResult>,
+                response: Response<SearchResult>
+            ) {
                 if (response.isSuccessful) {
                     listUsers.postValue(response.body()?.user as ArrayList<User>)
                 }
