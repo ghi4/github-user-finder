@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     UserAdapter.OnUserClickCallback {
     private lateinit var viewModel: MainViewModel
     private lateinit var userAdapter: UserAdapter
-    private var boolOctocat: Boolean = true
 
     companion object {
         const val KEY_USERNAME: String = "KEY_USERNAME"
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         setupUI()
         viewModelObserver()
-
     }
 
     private fun setupUI() {
@@ -89,8 +87,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
     override fun onQueryTextChange(keyword: String?): Boolean {
         if (!keyword.isNullOrEmpty()) {
-            showOctocat(boolOctocat)
             progressBar.visibility = View.VISIBLE
+
+            showOctocat(viewModel.getBoolOctocat().value!!)
+            viewModel.setBoolOctocatFalse()
 
             viewModel.setKeyword(keyword)
         } else progressBar.visibility = View.GONE
@@ -104,9 +104,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         startActivity(intent)
     }
 
-    private fun showOctocat(boolean: Boolean) {
-        if (boolean) {
-            val anim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_out)
+    private fun showOctocat(bool: Boolean){
+        if(bool) {
+            val anim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+
             anim.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {
                     //Nothing to do
@@ -119,10 +120,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 override fun onAnimationStart(animation: Animation?) {
                     //Nothing to do
                 }
-
             })
             imageView.startAnimation(anim)
-            boolOctocat = false
+        }else{
+            imageView.visibility = View.GONE
         }
     }
 }

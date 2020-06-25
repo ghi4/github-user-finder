@@ -15,6 +15,7 @@ import kotlin.concurrent.schedule
 class MainViewModel : ViewModel() {
     private var listUsers = MutableLiveData<ArrayList<User>>()
     private var textChangeTimer = Timer()
+    private var boolOctocat = MutableLiveData<Boolean>(true)
 
     fun setKeywordPressed(keyword: String) {
         textChangeTimer.cancel()
@@ -50,5 +51,13 @@ class MainViewModel : ViewModel() {
 
     fun getUsers(): MutableLiveData<ArrayList<User>> {
         return listUsers
+    }
+
+    fun setBoolOctocatFalse(){
+        boolOctocat.value = false
+    }
+
+    fun getBoolOctocat(): MutableLiveData<Boolean>{
+        return boolOctocat
     }
 }
