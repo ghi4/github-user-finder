@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".userdetail.followers.FollowersFragment">
 
     <com.mlsdev.animatedrv.AnimatedRecyclerView
         android:id="@+id/rv_followers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layoutAnimation="@anim/layout_animation_from_bottom_scale"
         app:animationDuration="600"
         app:layoutManagerOrientation="vertical"
         app:layoutManagerReverse="false"
-        app:layoutManagerType="linear"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        app:layoutManagerType="linear" />
 
     <ProgressBar
         android:id="@+id/progressBarFollowers"

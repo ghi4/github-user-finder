@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dhimas.githubsuserfinder.R
 import kotlinx.android.synthetic.main.item_repo.view.*
 
-class RepoAdapter: RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+class RepoAdapter : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
     private var listRepo = ArrayList<Repo>()
 
-    fun setListRepo(repos: ArrayList<Repo>){
+    fun setListRepo(repos: ArrayList<Repo>) {
         listRepo.clear()
         listRepo.addAll(repos)
     }
 
-    fun clearRepo(){
+    fun clearRepo() {
         listRepo.clear()
     }
 
@@ -30,9 +30,9 @@ class RepoAdapter: RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
         holder.bind(listRepo[position])
     }
 
-    inner class RepoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(repo: Repo){
-            with(itemView){
+    inner class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(repo: Repo) {
+            with(itemView) {
                 tv_repo_name.text = repo.name
                 tv_repo_desc.text = repo.description ?: "No Description"
             }

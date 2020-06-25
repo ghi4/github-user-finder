@@ -20,7 +20,7 @@ class RepoFragment : Fragment() {
 
     companion object {
         private var username = ""
-        fun newInstance(username: String): RepoFragment{
+        fun newInstance(username: String): RepoFragment {
             val fragment = RepoFragment()
             this.username = username
 
@@ -59,7 +59,7 @@ class RepoFragment : Fragment() {
             val newTitle = activity!!.resources.getString(R.string.repository) + "(${repos.size})"
             activity!!.tabs.getTabAt(2)!!.text = newTitle
 
-            if(repos.isNotEmpty()){
+            if (repos.isNotEmpty()) {
                 tv_repo.visibility = View.GONE
 
                 repoAdapter.setListRepo(repos)
@@ -67,7 +67,7 @@ class RepoFragment : Fragment() {
 
                 rv_repo.scheduleLayoutAnimation()
                 progressBarRepo.visibility = View.GONE
-            }else{
+            } else {
                 progressBarRepo.visibility = View.GONE
                 tv_repo.visibility = View.VISIBLE
             }

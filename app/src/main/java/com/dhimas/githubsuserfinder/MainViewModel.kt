@@ -10,19 +10,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     private var listUsers = MutableLiveData<ArrayList<User>>()
 
     fun setKeyword(keyword: String) {
+
         val service = RetrofitFactory.makeRetrofitService()
         val call = service.getSearchResult(keyword)
-        call.enqueue(object : Callback<SearchResult>{
+        call.enqueue(object : Callback<SearchResult> {
             override fun onFailure(call: Call<SearchResult>, t: Throwable) {
                 Log.d("Throwable", t.message.toString())
             }
 
             override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     listUsers.postValue(response.body()?.user as ArrayList<User>)
                 }
             }

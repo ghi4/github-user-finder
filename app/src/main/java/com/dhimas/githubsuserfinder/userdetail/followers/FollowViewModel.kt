@@ -13,14 +13,14 @@ class FollowViewModel : ViewModel() {
     private var listUser: MutableLiveData<ArrayList<User>>? = null
 
     fun getListUser(username: String): MutableLiveData<ArrayList<User>> {
-        if(listUser == null){
+        if (listUser == null) {
             listUser = MutableLiveData()
             loadData(username)
         }
         return listUser as MutableLiveData<ArrayList<User>>
     }
 
-    private fun loadData(username: String){
+    private fun loadData(username: String) {
         val service = RetrofitFactory.makeRetrofitService()
         val call = service.getUserFollow(username, "followers")
 
@@ -29,7 +29,10 @@ class FollowViewModel : ViewModel() {
                 Log.d("Throwable", t.message.toString())
             }
 
-            override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
+            override fun onResponse(
+                call: Call<ArrayList<User>>,
+                response: Response<ArrayList<User>>
+            ) {
                 if (response.isSuccessful) {
                     listUser?.postValue(response.body() as ArrayList<User>)
                 }

@@ -32,13 +32,16 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(MainViewModel::class.java)
 
         setupUI()
         viewModelObserver()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         rv_searchResult.setHasFixedSize(true)
         rv_searchResult.layoutManager = LinearLayoutManager(this)
         rv_searchResult.adapter = userAdapter
@@ -48,15 +51,15 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         userAdapter.setOnUserClickCallback(this)
     }
 
-    private fun viewModelObserver(){
+    private fun viewModelObserver() {
         viewModel.getUsers().observe(this, Observer { users ->
-            if(users != null){
+            if (users != null) {
                 userAdapter.notifyDataSetChanged()
                 rv_searchResult.scheduleLayoutAnimation()
 
                 userAdapter.setListUser(users)
                 progressBar.visibility = View.GONE
-            }else progressBar.visibility = View.GONE
+            } else progressBar.visibility = View.GONE
         })
     }
 
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_change_settings){
+        if (item.itemId == R.id.action_change_settings) {
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(intent)
         }
@@ -85,12 +88,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         textChangeTimer.cancel()
         textChangeTimer = Timer()
 
-        if(!keyword.isNullOrEmpty()){
+        if (!keyword.isNullOrEmpty()) {
             progressBar.visibility = View.VISIBLE
-            textChangeTimer.schedule(500){
+            textChangeTimer.schedule(500) {
                 viewModel.setKeyword(keyword)
             }
-        }else progressBar.visibility = View.GONE
+        } else progressBar.visibility = View.GONE
 
         return false
     }

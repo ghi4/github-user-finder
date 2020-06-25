@@ -12,8 +12,8 @@ import retrofit2.Response
 class RepoViewModel : ViewModel() {
     private var listRepo: MutableLiveData<ArrayList<Repo>>? = null
 
-    fun getListRepo(username: String): MutableLiveData<ArrayList<Repo>>{
-        if(listRepo == null){
+    fun getListRepo(username: String): MutableLiveData<ArrayList<Repo>> {
+        if (listRepo == null) {
             listRepo = MutableLiveData()
             loadData(username)
         }
@@ -25,13 +25,16 @@ class RepoViewModel : ViewModel() {
         val service = RetrofitFactory.makeRetrofitService()
         val call = service.getUserRepo(username)
 
-        call.enqueue(object : Callback<ArrayList<Repo>>{
+        call.enqueue(object : Callback<ArrayList<Repo>> {
             override fun onFailure(call: Call<ArrayList<Repo>>, t: Throwable) {
                 Log.d("Throwable", t.message.toString())
             }
 
-            override fun onResponse(call: Call<ArrayList<Repo>>, response: Response<ArrayList<Repo>>) {
-                if(response.isSuccessful) {
+            override fun onResponse(
+                call: Call<ArrayList<Repo>>,
+                response: Response<ArrayList<Repo>>
+            ) {
+                if (response.isSuccessful) {
                     listRepo?.postValue(response.body() as ArrayList<Repo>)
                 }
             }

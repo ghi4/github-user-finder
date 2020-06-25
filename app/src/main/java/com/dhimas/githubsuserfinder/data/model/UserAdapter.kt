@@ -18,7 +18,7 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
         listUser.addAll(users)
     }
 
-    fun clearUser(){
+    fun clearUser() {
         listUser.clear()
     }
 

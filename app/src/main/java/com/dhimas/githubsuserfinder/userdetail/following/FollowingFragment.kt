@@ -45,7 +45,7 @@ class FollowingFragment : Fragment() {
         viewModelObserver()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         rv_following.setHasFixedSize(true)
         rv_following.layoutManager = LinearLayoutManager(context)
         rv_following.adapter = userAdapter
@@ -54,7 +54,7 @@ class FollowingFragment : Fragment() {
         tv_follow.visibility = View.GONE
     }
 
-    private fun viewModelObserver(){
+    private fun viewModelObserver() {
         viewModel.getListUser(username).observe(viewLifecycleOwner, Observer { users ->
             val newTitle = activity!!.resources.getString(R.string.following) + "(${users.size})"
             activity!!.tabs.getTabAt(1)!!.text = newTitle
@@ -67,7 +67,7 @@ class FollowingFragment : Fragment() {
 
                 rv_following.scheduleLayoutAnimation()
                 progressBarFollowing.visibility = View.GONE
-            }else{
+            } else {
                 progressBarFollowing.visibility = View.GONE
                 tv_follow.visibility = View.VISIBLE
             }

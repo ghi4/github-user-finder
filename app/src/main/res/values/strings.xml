@@ -11,10 +11,8 @@
     <string name="query_hint">Type username here</string>
     <string name="user_detail">User Detail</string>
     <string name="no_description">No description</string>
-    <string name="percon_icon">percon icon</string>
     <string name="no_follower_yet">No Follower Yet</string>
     <string name="not_following_yet">Not Following Yet</string>
     <string name="avatar_of_the_user">Avatar of the user</string>
-    <string name="repository_icon">Repository Icon</string>
     <string name="no_repository_yet">No Repository Yet</string>
 </resources>

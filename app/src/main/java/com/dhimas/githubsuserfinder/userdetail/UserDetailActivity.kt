@@ -27,7 +27,7 @@ class UserDetailActivity : AppCompatActivity() {
         viewModelObserver()
     }
 
-    private fun setupUI(username: String){
+    private fun setupUI(username: String) {
         val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
         viewPager.adapter = sectionPagerAdapter
         tabs.setupWithViewPager(viewPager)
@@ -36,34 +36,34 @@ class UserDetailActivity : AppCompatActivity() {
 
         Picasso.get()
             .load(R.drawable.octocat1)
-            .resize(120,120)
+            .resize(120, 120)
             .into(iv_avatar)
     }
 
-    private fun viewModelObserver(){
-        viewModel.getUser().observe(this, Observer{ user ->
+    private fun viewModelObserver() {
+        viewModel.getUser().observe(this, Observer { user ->
             loadToView(user)
         })
     }
 
-    private fun loadToView(user: User){
+    private fun loadToView(user: User) {
         Picasso.get()
             .load(user.avatarUrl)
             .placeholder(R.drawable.octocat1)
-            .resize(120,120)
+            .resize(120, 120)
             .into(iv_avatar)
         tv_name.text = user.name
         tv_username.text = user.username
         tv_company.text = user.company
         tv_location.text = user.location
 
-        if(user.name.isNullOrEmpty()){
+        if (user.name.isNullOrEmpty()) {
             tv_name.visibility = View.GONE
         }
-        if(user.company.isNullOrEmpty()){
+        if (user.company.isNullOrEmpty()) {
             linear_company.visibility = View.GONE
         }
-        if(user.location.isNullOrEmpty()){
+        if (user.location.isNullOrEmpty()) {
             linear_location.visibility = View.GONE
         }
     }

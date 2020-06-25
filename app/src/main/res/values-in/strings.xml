@@ -12,10 +12,8 @@
     <string name="query_hint">Ketik nama pengguna</string>
     <string name="user_detail">Detil Pengguna</string>
     <string name="no_description">Tidak ada deskripsi</string>
-    <string name="percon_icon">Ikon Orang</string>
     <string name="no_follower_yet">Belum Ada Pengikut</string>
     <string name="not_following_yet">Belum Mengikuti Siapapun</string>
     <string name="avatar_of_the_user">Foto profil pengguna</string>
-    <string name="repository_icon">Ikon Penyimpanan</string>
     <string name="no_repository_yet">Penyimpanan Masih Kosong</string>
 </resources>
