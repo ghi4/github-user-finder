@@ -14,10 +14,10 @@ import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.following_fragment.*
 
 class FollowingFragment : Fragment() {
+    private lateinit var viewModel: FollowingViewModel
+    private lateinit var userAdapter: UserAdapter
 
     companion object {
-        private lateinit var viewModel: FollowingViewModel
-        private var userAdapter = UserAdapter()
         private var username = ""
 
         fun newInstance(username: String): FollowingFragment {
@@ -38,6 +38,7 @@ class FollowingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        userAdapter = UserAdapter()
         userAdapter.clearUser()
         viewModel = ViewModelProvider(this).get(FollowingViewModel::class.java)
 

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.followers_fragment.*
 
 class FollowersFragment : Fragment() {
     private lateinit var viewModel: FollowViewModel
-    private var userAdapter = UserAdapter()
+    private lateinit var userAdapter: UserAdapter
 
     companion object {
         private var username = ""
@@ -38,6 +38,7 @@ class FollowersFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        userAdapter = UserAdapter()
         userAdapter.clearUser()
         viewModel = ViewModelProvider(this).get(FollowViewModel::class.java)
 
