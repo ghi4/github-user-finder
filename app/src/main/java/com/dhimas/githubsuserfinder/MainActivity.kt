@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 }
 
                 override fun onAnimationStart(animation: Animation?) {
-                    //Nothing to do
+                    //Nothing to doo
                 }
             })
             imageView.startAnimation(anim)
