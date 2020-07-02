@@ -60,9 +60,6 @@ class RepoFragment : Fragment() {
 
     private fun viewModelObserver() {
         viewModel.getListRepo(username).observe(viewLifecycleOwner, Observer { repos ->
-            val newTitle = activity!!.resources.getString(R.string.repository) + "(${repos.size})"
-            activity!!.tabs.getTabAt(2)!!.text = newTitle
-
             if (repos.isNotEmpty()) {
                 tv_repo.visibility = View.GONE
 

@@ -72,6 +72,10 @@ class UserDetailActivity : AppCompatActivity() {
         if (user.location.isNullOrEmpty()) {
             linear_location.visibility = View.GONE
         }
+
+        tabs.getTabAt(0)!!.text = getString(R.string.follower) + "\n(${user.followersCount})"
+        tabs.getTabAt(1)!!.text = getString(R.string.following) + "\n(${user.followingCount})"
+        tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
     }
 
     override fun onBackPressed() {

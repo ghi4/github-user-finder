@@ -46,7 +46,6 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
                     .placeholder(R.drawable.octocat1)
                     .into(iv_avatar)
                 tv_username.text = user.username
-
                 itemView.setOnClickListener {
                     onUserClickCallback?.onUserClicked(user)
                 }

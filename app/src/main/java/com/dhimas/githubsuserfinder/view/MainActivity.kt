@@ -79,6 +79,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(intent)
         }
+        if(item.itemId == R.id.open_favorite){
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 

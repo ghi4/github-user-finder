@@ -59,9 +59,6 @@ class FollowingFragment : Fragment() {
 
     private fun viewModelObserver() {
         viewModel.getListUser(username).observe(viewLifecycleOwner, Observer { users ->
-            val newTitle = activity!!.resources.getString(R.string.following) + "(${users.size})"
-            activity!!.tabs.getTabAt(1)!!.text = newTitle
-
             if (users.isNotEmpty()) {
                 tv_follow.visibility = View.GONE
 

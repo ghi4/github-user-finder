@@ -5,5 +5,8 @@
         android:id="@+id/action_change_settings"
         android:title="@string/language_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/open_favorite"
+        android:title="Favorite" />
 
 </menu>
