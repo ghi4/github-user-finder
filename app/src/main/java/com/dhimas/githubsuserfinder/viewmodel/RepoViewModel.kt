@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.userdetail.repo
+package com.dhimas.githubsuserfinder.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

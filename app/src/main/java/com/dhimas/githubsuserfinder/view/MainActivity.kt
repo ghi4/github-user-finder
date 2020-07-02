@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder
+package com.dhimas.githubsuserfinder.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.User
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
-import com.dhimas.githubsuserfinder.userdetail.UserDetailActivity
+import com.dhimas.githubsuserfinder.service.AlarmReceiver
+import com.dhimas.githubsuserfinder.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
@@ -35,6 +37,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(MainViewModel::class.java)
+
+        val alarmReceiver = AlarmReceiver()
+        alarmReceiver.setAlarm(this)
 
         setupUI()
         viewModelObserver()
@@ -105,25 +110,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     private fun showOctocat(bool: Boolean){
-        if(bool) {
-            val anim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-            anim.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {
-                    //Nothing to do
-                }
-
-                override fun onAnimationEnd(animation: Animation?) {
-                    imageView.visibility = View.GONE
-                }
-
-                override fun onAnimationStart(animation: Animation?) {
-                    //Nothing to doo
-                }
-            })
-            imageView.startAnimation(anim)
-        }else{
-            imageView.visibility = View.GONE
-        }
     }
 }

@@ -17,4 +17,13 @@ class User {
 
     @SerializedName("location")
     val location: String? = null
+
+    @SerializedName("followers")
+    val followersCount: String? = "0"
+
+    @SerializedName("following")
+    val followingCount: String? = "0"
+
+    @SerializedName("public_repos")
+    val repoCount: String? = "0"
 }

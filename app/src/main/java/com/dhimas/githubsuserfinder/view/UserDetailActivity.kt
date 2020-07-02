@@ -1,13 +1,14 @@
-package com.dhimas.githubsuserfinder.userdetail
+package com.dhimas.githubsuserfinder.view
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dhimas.githubsuserfinder.MainActivity.Companion.KEY_USERNAME
+import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
@@ -28,7 +29,12 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun setupUI(username: String) {
-        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, username)
+        val sectionPagerAdapter =
+            SectionPagerAdapter(
+                this,
+                supportFragmentManager,
+                username
+            )
         viewPager.adapter = sectionPagerAdapter
         tabs.setupWithViewPager(viewPager)
 

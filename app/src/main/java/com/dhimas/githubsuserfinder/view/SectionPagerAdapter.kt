@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.userdetail
+package com.dhimas.githubsuserfinder.view
 
 import android.content.Context
 import androidx.annotation.StringRes
@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.userdetail.followers.FollowersFragment
-import com.dhimas.githubsuserfinder.userdetail.following.FollowingFragment
-import com.dhimas.githubsuserfinder.userdetail.repo.RepoFragment
+import com.dhimas.githubsuserfinder.view.fragments.FollowersFragment
+import com.dhimas.githubsuserfinder.view.fragments.FollowingFragment
+import com.dhimas.githubsuserfinder.view.fragments.RepoFragment
 
 class SectionPagerAdapter(
     private val mContext: Context,

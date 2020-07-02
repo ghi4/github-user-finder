@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.userdetail.following
+package com.dhimas.githubsuserfinder.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowingViewModel : ViewModel() {
+class FollowViewModel : ViewModel() {
     private var listUser: MutableLiveData<ArrayList<User>>? = null
 
     fun getListUser(username: String): MutableLiveData<ArrayList<User>> {
@@ -22,7 +22,7 @@ class FollowingViewModel : ViewModel() {
 
     private fun loadData(username: String) {
         val service = RetrofitFactory.makeRetrofitService()
-        val call = service.getUserFollow(username, "following")
+        val call = service.getUserFollow(username, "followers")
 
         call.enqueue(object : Callback<ArrayList<User>> {
             override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {

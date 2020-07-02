@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.userdetail.repo
+package com.dhimas.githubsuserfinder.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.RepoAdapter
+import com.dhimas.githubsuserfinder.viewmodel.RepoViewModel
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.repo_fragment.*
 
@@ -21,8 +22,9 @@ class RepoFragment : Fragment() {
     companion object {
         private var username = ""
         fun newInstance(username: String): RepoFragment {
-            val fragment = RepoFragment()
-            this.username = username
+            val fragment =
+                RepoFragment()
+            Companion.username = username
 
             return fragment
         }

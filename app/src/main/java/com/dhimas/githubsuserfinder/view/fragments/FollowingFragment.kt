@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.userdetail.followers
+package com.dhimas.githubsuserfinder.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,19 +10,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
+import com.dhimas.githubsuserfinder.viewmodel.FollowingViewModel
 import kotlinx.android.synthetic.main.activity_user_detail.*
-import kotlinx.android.synthetic.main.followers_fragment.*
+import kotlinx.android.synthetic.main.following_fragment.*
 
-class FollowersFragment : Fragment() {
-    private lateinit var viewModel: FollowViewModel
+class FollowingFragment : Fragment() {
+    private lateinit var viewModel: FollowingViewModel
     private lateinit var userAdapter: UserAdapter
 
     companion object {
         private var username = ""
 
-        fun newInstance(username: String): FollowersFragment {
-            val fragment = FollowersFragment()
-            this.username = username
+        fun newInstance(username: String): FollowingFragment {
+            val fragment =
+                FollowingFragment()
+            Companion.username = username
 
             return fragment
         }
@@ -32,7 +34,7 @@ class FollowersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.followers_fragment, container, false)
+        return inflater.inflate(R.layout.following_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,25 +42,25 @@ class FollowersFragment : Fragment() {
 
         userAdapter = UserAdapter()
         userAdapter.clearUser()
-        viewModel = ViewModelProvider(this).get(FollowViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FollowingViewModel::class.java)
 
         setupUI()
         viewModelObserver()
     }
 
     private fun setupUI() {
-        rv_followers.setHasFixedSize(true)
-        rv_followers.layoutManager = LinearLayoutManager(context)
-        rv_followers.adapter = userAdapter
+        rv_following.setHasFixedSize(true)
+        rv_following.layoutManager = LinearLayoutManager(context)
+        rv_following.adapter = userAdapter
 
-        progressBarFollowers.visibility = View.VISIBLE
+        progressBarFollowing.visibility = View.VISIBLE
         tv_follow.visibility = View.GONE
     }
 
     private fun viewModelObserver() {
         viewModel.getListUser(username).observe(viewLifecycleOwner, Observer { users ->
-            val newTitle = activity!!.resources.getString(R.string.follower) + "(${users.size})"
-            activity!!.tabs.getTabAt(0)!!.text = newTitle
+            val newTitle = activity!!.resources.getString(R.string.following) + "(${users.size})"
+            activity!!.tabs.getTabAt(1)!!.text = newTitle
 
             if (users.isNotEmpty()) {
                 tv_follow.visibility = View.GONE
@@ -66,11 +68,10 @@ class FollowersFragment : Fragment() {
                 userAdapter.setListUser(users)
                 userAdapter.notifyDataSetChanged()
 
-                rv_followers.scheduleLayoutAnimation()
-                progressBarFollowers.visibility = View.GONE
-
+                rv_following.scheduleLayoutAnimation()
+                progressBarFollowing.visibility = View.GONE
             } else {
-                progressBarFollowers.visibility = View.GONE
+                progressBarFollowing.visibility = View.GONE
                 tv_follow.visibility = View.VISIBLE
             }
         })
