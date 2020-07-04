@@ -23,7 +23,8 @@
             android:name=".view.UserDetailActivity"
             android:label="@string/user_detail"
             android:parentActivityName=".view.MainActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -20,8 +20,7 @@ import com.dhimas.githubsuserfinder.service.AlarmReceiver
 import com.dhimas.githubsuserfinder.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
-    UserAdapter.OnUserClickCallback {
+class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
     private lateinit var viewModel: MainViewModel
     private lateinit var userAdapter: UserAdapter
 
@@ -52,9 +51,29 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         rv_searchResult.layoutManager = LinearLayoutManager(this)
         rv_searchResult.adapter = userAdapter
 
-        searchView.setOnQueryTextListener(this)
-
         userAdapter.setOnUserClickCallback(this)
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    progressBar.visibility = View.VISIBLE
+                    viewModel.setKeywordPressed(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(keyword: String?): Boolean {
+                if (!keyword.isNullOrEmpty()) {
+                    progressBar.visibility = View.VISIBLE
+
+                    showOctocat(viewModel.getBoolOctocat().value!!)
+                    viewModel.setBoolOctocatFalse()
+
+                    viewModel.setKeyword(keyword)
+                } else progressBar.visibility = View.GONE
+                return false
+            }
+        })
     }
 
     private fun viewModelObserver() {
@@ -84,27 +103,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onQueryTextSubmit(keyword: String?): Boolean {
-        if (keyword != null) {
-            progressBar.visibility = View.VISIBLE
-            viewModel.setKeywordPressed(keyword)
-        }
-        return false
-    }
-
-    override fun onQueryTextChange(keyword: String?): Boolean {
-        if (!keyword.isNullOrEmpty()) {
-            progressBar.visibility = View.VISIBLE
-
-            showOctocat(viewModel.getBoolOctocat().value!!)
-            viewModel.setBoolOctocatFalse()
-
-            viewModel.setKeyword(keyword)
-        } else progressBar.visibility = View.GONE
-
-        return false
     }
 
     override fun onUserClicked(user: User) {
