@@ -1,29 +1,36 @@
 package com.dhimas.githubsuserfinder.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-class User {
+@Entity
+class User (
+    @PrimaryKey
+    @SerializedName("id")
+    val uid: Long,
+
     @SerializedName("login")
-    val username: String? = null
+    val username: String? = null,
 
     @SerializedName("name")
-    val name: String? = null
+    val name: String? = null,
 
     @SerializedName("avatar_url")
-    val avatarUrl: String? = null
+    val avatarUrl: String? = null,
 
     @SerializedName("company")
-    val company: String? = null
+    val company: String? = null,
 
     @SerializedName("location")
-    val location: String? = null
+    val location: String? = null,
 
     @SerializedName("followers")
-    val followersCount: String? = "0"
+    val followersCount: String? = "0",
 
     @SerializedName("following")
-    val followingCount: String? = "0"
+    val followingCount: String? = "0",
 
     @SerializedName("public_repos")
     val repoCount: String? = "0"
-}
+)

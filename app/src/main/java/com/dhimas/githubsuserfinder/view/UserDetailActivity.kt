@@ -5,8 +5,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.R
+import com.dhimas.githubsuserfinder.data.FavoriteDatabase
 import com.dhimas.githubsuserfinder.data.model.User
 import com.dhimas.githubsuserfinder.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -53,6 +55,8 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun loadToView(user: User) {
+        saveUser(user)
+
         Picasso.get()
             .load(user.avatarUrl)
             .placeholder(R.drawable.octocat1)
@@ -76,6 +80,15 @@ class UserDetailActivity : AppCompatActivity() {
         tabs.getTabAt(0)!!.text = getString(R.string.follower) + "\n(${user.followersCount})"
         tabs.getTabAt(1)!!.text = getString(R.string.following) + "\n(${user.followingCount})"
         tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
+    }
+
+    fun saveUser(user: User){
+        val database = FavoriteDatabase.getInstance(applicationContext)
+        val dao = database.userDao()
+
+        if(dao.getById(user.uid.toInt()).isEmpty()){
+            dao.insert(user)
+        }
     }
 
     override fun onBackPressed() {
