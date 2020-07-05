@@ -16,7 +16,7 @@ abstract class FavoriteDatabase: RoomDatabase() {
         fun getInstance(context: Context?): FavoriteDatabase{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context!!.applicationContext,
                     FavoriteDatabase::class.java,
                     DB_NAME
                 )

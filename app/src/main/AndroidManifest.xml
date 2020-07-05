@@ -3,10 +3,12 @@
     package="com.dhimas.githubsuserfinder">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.dhimas.githubsuserfinder.READ_DATABASE"
-        android:protectionLevel="normal"/>
-    <uses-permission android:name="com.dhimas.githubsuserfinder.WRITE_DATABASE"
-        android:protectionLevel="normal"/>
+    <uses-permission
+        android:name="com.dhimas.githubsuserfinder.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="com.dhimas.githubsuserfinder.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -16,21 +18,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".data.FavoriteContentProvider"
+            android:authorities="com.dhimas.githubsuserfinder"
+            android:exported="true"
+            android:readPermission="com.dhimas.githubsuserfinder.READ_DATABASE"
+            android:writePermission="com.dhimas.githubsuserfinder.WRITE_DATABASE"/>
+
         <receiver
             android:name=".service.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"/>
-        <provider
-            android:authorities="com.dhimas.githubsuserfinder.data"
-            android:name=".data.DatabaseProvider"
-            android:exported="true"/>
+            android:exported="true" />
 
         <activity android:name=".view.FavoriteActivity" />
         <activity
             android:name=".view.UserDetailActivity"
             android:label="@string/user_detail"
             android:parentActivityName=".view.MainActivity" />
-        <activity android:name=".view.MainActivity"
+        <activity
+            android:name=".view.MainActivity"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
