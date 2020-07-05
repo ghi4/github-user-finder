@@ -5,7 +5,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
 import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.FavoriteDatabase

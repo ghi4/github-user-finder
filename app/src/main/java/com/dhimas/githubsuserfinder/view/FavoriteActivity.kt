@@ -8,7 +8,6 @@ import com.dhimas.githubsuserfinder.data.FavoriteDatabase
 import com.dhimas.githubsuserfinder.data.model.User
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
 import kotlinx.android.synthetic.main.activity_favorite.*
-import kotlinx.android.synthetic.main.followers_fragment.*
 
 class FavoriteActivity : AppCompatActivity() {
     lateinit var userAdapter: UserAdapter

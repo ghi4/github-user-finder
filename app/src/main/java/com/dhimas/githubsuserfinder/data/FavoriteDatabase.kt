@@ -13,7 +13,7 @@ abstract class FavoriteDatabase: RoomDatabase() {
         private var INSTANCE: FavoriteDatabase? = null
         private const val DB_NAME = "favorite-db"
 
-        fun getInstance(context: Context): FavoriteDatabase{
+        fun getInstance(context: Context?): FavoriteDatabase{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

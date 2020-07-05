@@ -1,5 +1,6 @@
 package com.dhimas.githubsuserfinder.data
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -8,6 +9,9 @@ import com.dhimas.githubsuserfinder.data.model.User
 
 @Dao
 interface UserDao {
+    @Query("SELECT * FROM User")
+    fun cursorGetAll(): Cursor
+
     @Query("SELECT * FROM User")
     fun getAll(): List<User>
 

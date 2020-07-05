@@ -9,6 +9,12 @@ import android.net.Uri
 import com.dhimas.githubsuserfinder.data.model.User
 
 class DatabaseProvider: ContentProvider() {
+    val TAG = DatabaseProvider::class.java.simpleName
+    val TABLE_NAME = User::class.java.simpleName
+
+    val userDao = FavoriteDatabase.getInstance(context).userDao()
+
+
     val AUTHORITY = "com.dhimas.githubsuserfinder.provider"
     val URI_FAVORITE = Uri.parse("content://$AUTHORITY/" + User::class.java.simpleName)
     val MATCHER = UriMatcher(UriMatcher.NO_MATCH)
@@ -28,7 +34,11 @@ class DatabaseProvider: ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        return userDao.cursorGetAll()
+    }
+
+    fun providerGetAll(): Cursor{
+        return userDao.cursorGetAll()
     }
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {

@@ -20,6 +20,10 @@
             android:name=".service.AlarmReceiver"
             android:enabled="true"
             android:exported="true"/>
+        <provider
+            android:authorities="com.dhimas.githubsuserfinder.data"
+            android:name=".data.DatabaseProvider"
+            android:exported="true"/>
 
         <activity android:name=".view.FavoriteActivity" />
         <activity
