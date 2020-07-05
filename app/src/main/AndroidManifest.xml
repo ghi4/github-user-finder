@@ -3,7 +3,10 @@
     package="com.dhimas.githubsuserfinder">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.dhimas.githubsuserfinder.READ_DATABASE"
+        android:protectionLevel="normal"/>
+    <uses-permission android:name="com.dhimas.githubsuserfinder.WRITE_DATABASE"
+        android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"

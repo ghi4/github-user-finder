@@ -8,11 +8,14 @@ import com.dhimas.githubsuserfinder.data.model.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM User")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM user WHERE uid = :id")
+    @Query("SELECT * FROM User WHERE uid = :id")
     fun getById(id: Int): List<User>
+
+    @Query("DELETE FROM User WHERE uid = :id")
+    fun deleteById(id: Long)
 
     @Insert
     fun insert(vararg user: User)

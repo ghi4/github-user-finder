@@ -3,6 +3,7 @@ package com.dhimas.githubsuserfinder.view
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View

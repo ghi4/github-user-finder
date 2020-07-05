@@ -11,13 +11,14 @@ abstract class FavoriteDatabase: RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE: FavoriteDatabase? = null
+        private const val DB_NAME = "favorite-db"
 
         fun getInstance(context: Context): FavoriteDatabase{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     FavoriteDatabase::class.java,
-                    "favorite-db"
+                    DB_NAME
                 )
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
