@@ -13,7 +13,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    lateinit var CONTENT_URI: Uri
+    private lateinit var CONTENT_URI: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,30 +30,35 @@ class MainActivity : AppCompatActivity() {
 
         val myObserver = object : ContentObserver(handler){
             override fun onChange(self: Boolean){
+                Log.d("Info", "1")
                 loadUserAsync()
             }
         }
 
+        Log.d("Info", "2")
         contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
 
         loadUserAsync()
     }
 
     private fun loadUserAsync(){
+        Log.d("Info", "3")
         GlobalScope.launch(Dispatchers.Main) {
+            Log.d("Info", "4")
             val defferedFavorite = async(Dispatchers.IO) {
+                Log.d("Info", "5")
                 val cursor = contentResolver?.query(CONTENT_URI, null, null, null, null)
                     MappingHelper.mapCursorToArrayList(cursor)
             }
 
+            Log.d("Info", "")
             val favoriteUsers = defferedFavorite.await()
             if(favoriteUsers.size > 0){
-                Log.d("Cursor", "UWAW")
+                Log.d("Cursor", "UWAW" + favoriteUsers.size)
+                Log.d("Cursor", "UWAW" + favoriteUsers[0].avatarUrl)
             }else{
                 Log.d("Cursor", "YACHHH")
             }
         }
-
-
     }
 }

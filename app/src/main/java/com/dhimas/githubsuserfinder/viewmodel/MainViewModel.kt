@@ -53,11 +53,11 @@ class MainViewModel : ViewModel() {
         return listUsers
     }
 
-    fun setBoolOctocatFalse(){
+    fun setBoolOctocatFalse() {
         boolOctocat.value = false
     }
 
-    fun getBoolOctocat(): MutableLiveData<Boolean>{
+    fun getBoolOctocat(): MutableLiveData<Boolean> {
         return boolOctocat
     }
 }

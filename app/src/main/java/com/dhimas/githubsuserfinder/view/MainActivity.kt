@@ -3,12 +3,9 @@ package com.dhimas.githubsuserfinder.view
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -33,13 +30,8 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(MainViewModel::class.java)
-
-        val alarmReceiver = AlarmReceiver()
-        alarmReceiver.setAlarm(this)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
+            .get(MainViewModel::class.java)
 
         setupUI()
         viewModelObserver()
@@ -54,7 +46,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
 
         userAdapter.setOnUserClickCallback(this)
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     progressBar.visibility = View.VISIBLE
@@ -96,10 +88,10 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_change_settings) {
-            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
-        if(item.itemId == R.id.open_favorite){
+        if (item.itemId == R.id.action_open_favorite) {
             val intent = Intent(this, FavoriteActivity::class.java)
             startActivity(intent)
         }
@@ -112,7 +104,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
         startActivity(intent)
     }
 
-    private fun showOctocat(bool: Boolean){
+    private fun showOctocat(bool: Boolean) {
 
     }
 }

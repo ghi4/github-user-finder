@@ -16,4 +16,7 @@
     <string name="avatar_of_the_user">Avatar of the user</string>
     <string name="no_repository_yet">No Repository Yet</string>
     <string name="photo_of_octocat_from_github">Photo of Octocat from Github</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="favorite_user">Favorite User</string>
 </resources>

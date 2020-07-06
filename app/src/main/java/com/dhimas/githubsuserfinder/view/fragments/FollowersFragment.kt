@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.UserAdapter
 import com.dhimas.githubsuserfinder.viewmodel.FollowViewModel
-import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.followers_fragment.*
 
 class FollowersFragment : Fragment() {

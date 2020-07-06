@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
-class User (
+class User(
     @PrimaryKey
     @SerializedName("id")
     val uid: Long,

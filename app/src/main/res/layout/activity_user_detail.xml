@@ -146,19 +146,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fadeScrollbars="false"
-                android:text="Monday" />
+                android:text="@string/follower" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fadeScrollbars="false"
-                android:text="Tuesday" />
+                android:text="@string/following" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fadeScrollbars="false"
-                android:text="Wednesday" />
+                android:text="@string/repository" />
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

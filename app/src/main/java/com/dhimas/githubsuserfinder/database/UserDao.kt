@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.data
+package com.dhimas.githubsuserfinder.database
 
 import android.database.Cursor
 import androidx.room.Dao

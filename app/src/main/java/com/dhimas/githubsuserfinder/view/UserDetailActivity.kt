@@ -5,10 +5,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.FavoriteDatabase
 import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.database.FavoriteDatabase
+import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
@@ -61,10 +61,10 @@ class UserDetailActivity : AppCompatActivity() {
             .placeholder(R.drawable.octocat1)
             .resize(120, 120)
             .into(iv_avatar)
-        tv_name.text = user.name
-        tv_username.text = user.username
-        tv_company.text = user.company
-        tv_location.text = user.location
+        tv_name.text = user.name?.trim()
+        tv_username.text = user.username?.trim()
+        tv_company.text = user.company?.trim()
+        tv_location.text = user.location?.trim()
 
         if (user.name.isNullOrEmpty()) {
             tv_name.visibility = View.GONE
@@ -81,11 +81,11 @@ class UserDetailActivity : AppCompatActivity() {
         tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
     }
 
-    fun saveUser(user: User){
+    private fun saveUser(user: User) {
         val database = FavoriteDatabase.getInstance(applicationContext)
         val dao = database.userDao()
 
-        if(dao.getById(user.uid.toInt()).isEmpty()){
+        if (dao.getById(user.uid.toInt()).isEmpty()) {
             dao.insert(user)
         }
     }

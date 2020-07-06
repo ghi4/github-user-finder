@@ -17,4 +17,7 @@
     <string name="avatar_of_the_user">Foto profil pengguna</string>
     <string name="no_repository_yet">Penyimpanan Masih Kosong</string>
     <string name="photo_of_octocat_from_github">Foto Octocat dari Github</string>
+    <string name="favorite">Favorit</string>
+    <string name="setting">Pengaturan</string>
+    <string name="favorite_user">Pengguna Favorit</string>
 </resources>

@@ -1,10 +1,12 @@
-package com.dhimas.githubsuserfinder.data
+package com.dhimas.githubsuserfinder.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import com.dhimas.githubsuserfinder.database.FavoriteDatabase
+import com.dhimas.githubsuserfinder.database.UserDao
 
 class FavoriteContentProvider : ContentProvider() {
     companion object {
@@ -12,7 +14,9 @@ class FavoriteContentProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
-        userDao = FavoriteDatabase.getInstance(context as Context).userDao()
+        userDao = FavoriteDatabase.getInstance(
+            context as Context
+        ).userDao()
         return true
     }
 

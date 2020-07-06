@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.data.model.RepoAdapter
 import com.dhimas.githubsuserfinder.viewmodel.RepoViewModel
-import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.repo_fragment.*
 
 class RepoFragment : Fragment() {
