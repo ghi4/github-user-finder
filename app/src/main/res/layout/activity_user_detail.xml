@@ -6,8 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c4c4c4"
-    android:backgroundTint="#c4c4c4">
+    android:background="#c4c4c4">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -26,8 +25,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
+                android:layout_marginBottom="30dp"
                 app:layout_collapseMode="none">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -62,6 +62,7 @@
                     android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
                     android:text="@string/loading"
                     android:textColor="#F0F0F0"
                     android:textStyle="italic"
@@ -71,8 +72,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                 <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -175,6 +178,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        android:focusable="true" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

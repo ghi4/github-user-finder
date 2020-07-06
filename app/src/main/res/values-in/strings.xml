@@ -20,4 +20,9 @@
     <string name="favorite">Favorit</string>
     <string name="setting">Pengaturan</string>
     <string name="favorite_user">Pengguna Favorit</string>
+    <string name="you_have_no_favorite_user">Kamu belum memiliki pengguna favorit</string>
+    <string name="username_not_found">Pengguna tidak ditemukan</string>
+    <string name="language">Bahasa Indonesia</string>
+    <string name="language_title">Bahasa</string>
+    <string name="reminder_text">Pengingat pada jam 09:00 pagi</string>
 </resources>

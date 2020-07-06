@@ -1,10 +1,12 @@
 package com.dhimas.githubsuserfinder.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dhimas.githubsuserfinder.data.api.RetrofitFactory
 import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.database.FavoriteDatabase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +29,22 @@ class UserDetailViewModel : ViewModel() {
                 }
             }
         })
+    }
+
+    fun isUserFavorite(context: Context): Boolean{
+        val dao = FavoriteDatabase.getInstance(context).userDao()
+        val user = user.value as User
+
+        return !dao.getById(user.uid.toInt()).isEmpty()
+    }
+
+     fun saveUser(context: Context) {
+         val dao = FavoriteDatabase.getInstance(context).userDao()
+         val user = user.value as User
+
+        if (dao.getById(user.uid.toInt()).isEmpty()) {
+            dao.insert(user)
+        }
     }
 
     fun getUser() = user

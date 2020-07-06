@@ -8,13 +8,13 @@
     tools:context=".view.SettingActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_language_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Language"
+        android:text="@string/language_title"
         android:textColor="@android:color/primary_text_light"
         android:textSize="18sp"
         android:onClick="changeLanguage"
@@ -23,17 +23,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tv_language"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        android:text="English"
+        android:text="@string/language"
         android:textSize="18sp"
         android:onClick="changeLanguage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_language_title" />
 
     <Switch
         android:id="@+id/switch_reminder"
@@ -42,10 +42,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Reminder at 9:00 AM"
+        android:text="@string/reminder_text"
         android:textColor="@android:color/primary_text_light"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_language" />
 </androidx.constraintlayout.widget.ConstraintLayout>

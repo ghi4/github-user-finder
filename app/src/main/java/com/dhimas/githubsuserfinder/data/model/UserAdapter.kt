@@ -11,11 +11,17 @@ import kotlinx.android.synthetic.main.item_user.view.*
 
 class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
     private var listUser = ArrayList<User>()
+    private var deleteVisible: Boolean = false
     private var onUserClickCallback: OnUserClickCallback? = null
+    private var onDeleteClickCallback: OnDeleteClickCallback? = null
 
     fun setListUser(users: ArrayList<User>) {
         listUser.clear()
         listUser.addAll(users)
+    }
+
+    fun setDeleteVisible(){
+        deleteVisible = true
     }
 
     fun clearUser() {
@@ -24,6 +30,10 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
 
     fun setOnUserClickCallback(onUserClickCallback: OnUserClickCallback) {
         this.onUserClickCallback = onUserClickCallback
+    }
+
+    fun setOnDeleteClickCallback(onDeleteClickCallback: OnDeleteClickCallback) {
+        this.onDeleteClickCallback = onDeleteClickCallback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -46,8 +56,15 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
                     .placeholder(R.drawable.octocat1)
                     .into(iv_avatar)
                 tv_username.text = user.username
+
                 itemView.setOnClickListener {
                     onUserClickCallback?.onUserClicked(user)
+                }
+
+                if(deleteVisible)
+                    iv_delete.visibility = View.VISIBLE
+                iv_delete.setOnClickListener{
+                    onDeleteClickCallback?.onDeleteClicked(user)
                 }
             }
         }
@@ -55,6 +72,10 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
 
     interface OnUserClickCallback {
         fun onUserClicked(user: User)
+    }
+
+    interface OnDeleteClickCallback {
+        fun onDeleteClicked(user: User)
     }
 
 }

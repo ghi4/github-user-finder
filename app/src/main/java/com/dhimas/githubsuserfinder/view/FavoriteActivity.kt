@@ -2,6 +2,8 @@ package com.dhimas.githubsuserfinder.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +15,7 @@ import com.dhimas.githubsuserfinder.database.FavoriteDatabase
 import com.dhimas.githubsuserfinder.viewmodel.FavoriteViewModel
 import kotlinx.android.synthetic.main.activity_favorite.*
 
-class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
+class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback, UserAdapter.OnDeleteClickCallback {
     private lateinit var viewModel: FavoriteViewModel
     private lateinit var userAdapter: UserAdapter
 
@@ -34,13 +36,15 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
 
     private fun viewModelObserver() {
         viewModel.getUsers(this).observe(this, Observer { users ->
-            if (users != null) {
+            if (users.isNotEmpty()) {
+                tv_no_favorite.visibility = View.GONE
+
                 userAdapter.notifyDataSetChanged()
                 rv_favorite.scheduleLayoutAnimation()
 
                 userAdapter.setListUser(users)
             }else{
-
+                tv_no_favorite.visibility = View.VISIBLE
             }
         })
     }
@@ -52,12 +56,22 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
         rv_favorite.layoutManager = LinearLayoutManager(applicationContext)
         rv_favorite.adapter = userAdapter
 
+        tv_no_favorite.visibility = View.GONE
+
+        userAdapter.setDeleteVisible()
         userAdapter.setOnUserClickCallback(this)
+        userAdapter.setOnDeleteClickCallback(this)
+
     }
 
     override fun onUserClicked(user: User) {
         val intent = Intent(this, UserDetailActivity::class.java)
         intent.putExtra(KEY_USERNAME, user.username)
         startActivity(intent)
+    }
+
+    override fun onDeleteClicked(user: User) {
+        viewModel.deleteUser(this, user)
+        Toast.makeText(this, "${user.username} deleted.", Toast.LENGTH_LONG).show()
     }
 }

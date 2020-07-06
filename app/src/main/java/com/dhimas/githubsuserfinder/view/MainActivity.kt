@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
     private fun setupUI() {
         userAdapter = UserAdapter()
 
+        tv_no_user.visibility = View.GONE
         rv_searchResult.setHasFixedSize(true)
         rv_searchResult.layoutManager = LinearLayoutManager(this)
         rv_searchResult.adapter = userAdapter
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     progressBar.visibility = View.VISIBLE
+                    tv_no_user.visibility = View.GONE
                     viewModel.setKeywordPressed(query)
                 }
                 return false
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
             override fun onQueryTextChange(keyword: String?): Boolean {
                 if (!keyword.isNullOrEmpty()) {
                     progressBar.visibility = View.VISIBLE
+                    tv_no_user.visibility = View.GONE
 
                     showOctocat(viewModel.getBoolOctocat().value!!)
                     viewModel.setBoolOctocatFalse()
@@ -71,13 +74,19 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
 
     private fun viewModelObserver() {
         viewModel.getUsers().observe(this, Observer { users ->
-            if (users != null) {
+            if (users.isNotEmpty()) {
                 userAdapter.notifyDataSetChanged()
                 rv_searchResult.scheduleLayoutAnimation()
 
+                tv_no_user.visibility = View.GONE
                 userAdapter.setListUser(users)
                 progressBar.visibility = View.GONE
-            } else progressBar.visibility = View.GONE
+            } else{
+                progressBar.visibility = View.GONE
+                userAdapter.notifyDataSetChanged()
+                userAdapter.clearUser()
+                tv_no_user.visibility = View.VISIBLE
+            }
         })
     }
 

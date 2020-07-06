@@ -19,4 +19,9 @@
     <string name="favorite">Favorite</string>
     <string name="setting">Setting</string>
     <string name="favorite_user">Favorite User</string>
+    <string name="you_have_no_favorite_user">You have no favorite user</string>
+    <string name="username_not_found">Username not found</string>
+    <string name="language">English</string>
+    <string name="language_title">Language</string>
+    <string name="reminder_text">Reminder at 9:00 AM</string>
 </resources>

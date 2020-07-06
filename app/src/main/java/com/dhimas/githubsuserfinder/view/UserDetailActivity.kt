@@ -2,6 +2,7 @@ package com.dhimas.githubsuserfinder.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,18 @@ class UserDetailActivity : AppCompatActivity() {
 
         supportActionBar?.elevation = 0f
 
+        fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+
+        fab_favorite.setOnClickListener {
+            if(!viewModel.isUserFavorite(this)){
+                viewModel.saveUser(this)
+                fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                Toast.makeText(this, "$username added to favorite list.", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "Already in favorite list!", Toast.LENGTH_LONG).show()
+            }
+        }
+
         Picasso.get()
             .load(R.drawable.octocat1)
             .resize(120, 120)
@@ -54,40 +67,22 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun loadToView(user: User) {
-        saveUser(user)
-
         Picasso.get()
             .load(user.avatarUrl)
             .placeholder(R.drawable.octocat1)
             .resize(120, 120)
             .into(iv_avatar)
-        tv_name.text = user.name?.trim()
-        tv_username.text = user.username?.trim()
-        tv_company.text = user.company?.trim()
-        tv_location.text = user.location?.trim()
+        tv_name.text = user.name?.trim() ?: "-"
+        tv_username.text = user.username?.trim() ?: "-"
+        tv_company.text = user.company?.trim() ?: "-"
+        tv_location.text = user.location?.trim() ?: "-"
 
-        if (user.name.isNullOrEmpty()) {
-            tv_name.visibility = View.GONE
-        }
-        if (user.company.isNullOrEmpty()) {
-            linear_company.visibility = View.GONE
-        }
-        if (user.location.isNullOrEmpty()) {
-            linear_location.visibility = View.GONE
-        }
+        if(viewModel.isUserFavorite(this))
+            fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
 
         tabs.getTabAt(0)!!.text = getString(R.string.follower) + "\n(${user.followersCount})"
         tabs.getTabAt(1)!!.text = getString(R.string.following) + "\n(${user.followingCount})"
         tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
-    }
-
-    private fun saveUser(user: User) {
-        val database = FavoriteDatabase.getInstance(applicationContext)
-        val dao = database.userDao()
-
-        if (dao.getById(user.uid.toInt()).isEmpty()) {
-            dao.insert(user)
-        }
     }
 
     override fun onBackPressed() {

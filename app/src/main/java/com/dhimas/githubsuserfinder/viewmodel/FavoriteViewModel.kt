@@ -21,4 +21,11 @@ class FavoriteViewModel : ViewModel() {
         }
         return listUser as MutableLiveData<ArrayList<User>>
     }
+
+    fun deleteUser(context: Context, user: User){
+        val dao = FavoriteDatabase.getInstance(context).userDao()
+        dao.delete(user)
+
+        loadData(context)
+    }
 }
