@@ -1,6 +1,7 @@
-package com.dhimas.favoriteconsumer
+package com.dhimas.favoriteconsumer.helper
 
 import android.database.Cursor
+import com.dhimas.favoriteconsumer.model.User
 
 object MappingHelper {
     fun mapCursorToArrayList(cursor: Cursor?): ArrayList<User>{

@@ -1,8 +1,8 @@
-package com.dhimas.favoriteconsumer
+package com.dhimas.favoriteconsumer.model
 
 import com.google.gson.annotations.SerializedName
 
-class User (
+class User(
     @SerializedName("id")
     val uid: Long,
 

@@ -22,11 +22,8 @@
     <string name="language">English</string>
     <string name="language_title">Language</string>
     <string name="reminder_text">Reminder at 9:00 AM</string>
-    <string name="reminder_toast_activated">Reminder at 09:00 AM activated</string>
-    <string name="reminder_toast_canceled">Reminder at 09:00 AM canceled</string>
     <string name="delete_button">Delete button</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
     <string name="favorite_banner">Favorite User</string>
     <string name="no_favorite_user">No Favorite User</string>
+    <string name="favorite_user_photo">Favorite User Photo</string>
 </resources>

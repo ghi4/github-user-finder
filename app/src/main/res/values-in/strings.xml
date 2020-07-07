@@ -23,7 +23,8 @@
     <string name="language">Bahasa Indonesia</string>
     <string name="language_title">Bahasa</string>
     <string name="reminder_text">Pengingat pada jam 09:00 pagi</string>
-    <string name="reminder_toast_activated">Pengingat pada jam 09:00 pagi diaktifkan</string>
-    <string name="reminder_toast_canceled">Pengingat pada jam 09:00 pagi dibatalkan</string>
     <string name="delete_button">Tombol hapus</string>
+    <string name="favorite_banner">Pengguna Favoritr</string>
+    <string name="no_favorite_user">Tidak Ada User Favorit</string>
+    <string name="favorite_user_photo">Foto Pengguna Favorit</string>
 </resources>

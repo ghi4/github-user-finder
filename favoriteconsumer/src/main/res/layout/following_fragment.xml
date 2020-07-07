@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.FollowingFragment">
+
+    <com.mlsdev.animatedrv.AnimatedRecyclerView
+        android:id="@+id/rv_following"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutAnimation="@anim/layout_animation_from_bottom_scale"
+        app:animationDuration="600"
+        app:layoutManagerOrientation="vertical"
+        app:layoutManagerReverse="false"
+        app:layoutManagerType="linear" />
+
+    <ProgressBar
+        android:id="@+id/progressBarFollowing"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_item_fragment" />
+
+    <TextView
+        android:id="@+id/tv_follow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_item_fragment"
+        android:drawableTop="@drawable/ic_person"
+        android:gravity="center"
+        android:text="@string/not_following_yet" />
+
+</FrameLayout>

@@ -39,8 +39,11 @@
 
         <receiver
             android:name=".service.AlarmReceiver"
-            android:enabled="true"
-            android:exported="true" />
+            android:enabled="true" />
+
+        <service
+            android:name="com.dhimas.githubsuserfinder.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity
             android:name=".view.SettingActivity"
