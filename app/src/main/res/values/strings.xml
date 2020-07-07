@@ -7,7 +7,6 @@
     <string name="avatar_photo">avatar photo</string>
     <string name="company_icon">company icon</string>
     <string name="location_icon">location icon</string>
-    <string name="language_settings">Change language setting</string>
     <string name="query_hint">Type username here</string>
     <string name="user_detail">User Detail</string>
     <string name="no_description">No description</string>
@@ -15,7 +14,6 @@
     <string name="not_following_yet">Not Following Yet</string>
     <string name="avatar_of_the_user">Avatar of the user</string>
     <string name="no_repository_yet">No Repository Yet</string>
-    <string name="photo_of_octocat_from_github">Photo of Octocat from Github</string>
     <string name="favorite">Favorite</string>
     <string name="setting">Setting</string>
     <string name="favorite_user">Favorite User</string>
@@ -24,4 +22,7 @@
     <string name="language">English</string>
     <string name="language_title">Language</string>
     <string name="reminder_text">Reminder at 9:00 AM</string>
+    <string name="reminder_toast_activated">Reminder at 09:00 AM activated</string>
+    <string name="reminder_toast_canceled">Reminder at 09:00 AM canceled</string>
+    <string name="delete_button">Delete button</string>
 </resources>

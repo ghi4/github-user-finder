@@ -13,16 +13,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var CONTENT_URI: Uri
+    private lateinit var contentUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        CONTENT_URI = Uri.Builder().scheme("content")
-            .authority("com.dhimas.githubsuserfinder")
-            .appendPath("User")
-            .build()
 
         val handlerThread = HandlerThread("DataObserver")
         handlerThread.start()
@@ -36,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.d("Info", "2")
-        contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
+        contentResolver.registerContentObserver(contentUri, true, myObserver)
 
         loadUserAsync()
     }
@@ -47,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("Info", "4")
             val defferedFavorite = async(Dispatchers.IO) {
                 Log.d("Info", "5")
-                val cursor = contentResolver?.query(CONTENT_URI, null, null, null, null)
+                val cursor = contentResolver?.query(contentUri, null, null, null, null)
                     MappingHelper.mapCursorToArrayList(cursor)
             }
 

@@ -9,12 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.UserAdapter
-import com.dhimas.githubsuserfinder.viewmodel.FollowViewModel
+import com.dhimas.githubsuserfinder.model.UserAdapter
+import com.dhimas.githubsuserfinder.viewmodel.FollowersViewModel
 import kotlinx.android.synthetic.main.followers_fragment.*
 
 class FollowersFragment : Fragment() {
-    private lateinit var viewModel: FollowViewModel
+    private lateinit var viewModel: FollowersViewModel
     private lateinit var userAdapter: UserAdapter
 
     companion object {
@@ -41,7 +41,7 @@ class FollowersFragment : Fragment() {
 
         userAdapter = UserAdapter()
         userAdapter.clearUser()
-        viewModel = ViewModelProvider(this).get(FollowViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FollowersViewModel::class.java)
 
         setupUI()
         viewModelObserver()

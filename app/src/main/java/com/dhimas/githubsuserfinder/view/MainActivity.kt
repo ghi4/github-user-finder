@@ -2,7 +2,6 @@ package com.dhimas.githubsuserfinder.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,9 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.User
-import com.dhimas.githubsuserfinder.data.model.UserAdapter
-import com.dhimas.githubsuserfinder.service.AlarmReceiver
+import com.dhimas.githubsuserfinder.model.User
+import com.dhimas.githubsuserfinder.model.UserAdapter
 import com.dhimas.githubsuserfinder.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -81,7 +79,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
                 tv_no_user.visibility = View.GONE
                 userAdapter.setListUser(users)
                 progressBar.visibility = View.GONE
-            } else{
+            } else {
                 progressBar.visibility = View.GONE
                 userAdapter.notifyDataSetChanged()
                 userAdapter.clearUser()

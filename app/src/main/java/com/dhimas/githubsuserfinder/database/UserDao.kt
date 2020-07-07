@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.model.User
 
 @Dao
 interface UserDao {

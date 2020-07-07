@@ -25,19 +25,21 @@
             android:authorities="com.dhimas.githubsuserfinder"
             android:exported="true"
             android:readPermission="com.dhimas.githubsuserfinder.READ_DATABASE"
-            android:writePermission="com.dhimas.githubsuserfinder.WRITE_DATAVASE" />
+            android:writePermission="com.dhimas.githubsuserfinder.WRITE_DATABASE" />
 
         <receiver
             android:name=".service.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".view.SettingActivity"
+        <activity
+            android:name=".view.SettingActivity"
             android:label="@string/setting"
-            android:parentActivityName=".view.MainActivity"/>
-        <activity android:name=".view.FavoriteActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.FavoriteActivity"
             android:label="@string/favorite_user"
-            android:parentActivityName=".view.MainActivity"/>
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.UserDetailActivity"
             android:label="@string/user_detail"

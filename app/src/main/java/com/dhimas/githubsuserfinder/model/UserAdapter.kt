@@ -1,11 +1,11 @@
-package com.dhimas.githubsuserfinder.data.model
+package com.dhimas.githubsuserfinder.model
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.UserAdapter.UserViewHolder
+import com.dhimas.githubsuserfinder.model.UserAdapter.UserViewHolder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_user.view.*
 
@@ -20,12 +20,12 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
         listUser.addAll(users)
     }
 
-    fun setDeleteVisible(){
-        deleteVisible = true
-    }
-
     fun clearUser() {
         listUser.clear()
+    }
+
+    fun setDeleteVisible() {
+        deleteVisible = true
     }
 
     fun setOnUserClickCallback(onUserClickCallback: OnUserClickCallback) {
@@ -61,9 +61,10 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
                     onUserClickCallback?.onUserClicked(user)
                 }
 
-                if(deleteVisible)
+                if (deleteVisible)
                     iv_delete.visibility = View.VISIBLE
-                iv_delete.setOnClickListener{
+
+                iv_delete.setOnClickListener {
                     onDeleteClickCallback?.onDeleteClicked(user)
                 }
             }

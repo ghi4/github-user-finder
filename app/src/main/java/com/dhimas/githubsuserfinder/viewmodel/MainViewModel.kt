@@ -3,9 +3,9 @@ package com.dhimas.githubsuserfinder.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dhimas.githubsuserfinder.data.api.RetrofitFactory
-import com.dhimas.githubsuserfinder.data.model.SearchResult
-import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.api.RetrofitFactory
+import com.dhimas.githubsuserfinder.model.SearchResult
+import com.dhimas.githubsuserfinder.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

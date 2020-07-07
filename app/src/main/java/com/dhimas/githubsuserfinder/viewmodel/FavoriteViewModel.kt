@@ -3,7 +3,7 @@ package com.dhimas.githubsuserfinder.viewmodel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.model.User
 import com.dhimas.githubsuserfinder.database.FavoriteDatabase
 
 class FavoriteViewModel : ViewModel() {
@@ -22,7 +22,7 @@ class FavoriteViewModel : ViewModel() {
         return listUser as MutableLiveData<ArrayList<User>>
     }
 
-    fun deleteUser(context: Context, user: User){
+    fun deleteUser(context: Context, user: User) {
         val dao = FavoriteDatabase.getInstance(context).userDao()
         dao.delete(user)
 

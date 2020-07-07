@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.UserAdapter
+import com.dhimas.githubsuserfinder.model.UserAdapter
 import com.dhimas.githubsuserfinder.viewmodel.FollowingViewModel
 import kotlinx.android.synthetic.main.following_fragment.*
 

@@ -9,13 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.User
-import com.dhimas.githubsuserfinder.data.model.UserAdapter
-import com.dhimas.githubsuserfinder.database.FavoriteDatabase
+import com.dhimas.githubsuserfinder.model.User
+import com.dhimas.githubsuserfinder.model.UserAdapter
 import com.dhimas.githubsuserfinder.viewmodel.FavoriteViewModel
 import kotlinx.android.synthetic.main.activity_favorite.*
 
-class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback, UserAdapter.OnDeleteClickCallback {
+class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
+    UserAdapter.OnDeleteClickCallback {
     private lateinit var viewModel: FavoriteViewModel
     private lateinit var userAdapter: UserAdapter
 
@@ -34,21 +34,6 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback, U
         viewModelObserver()
     }
 
-    private fun viewModelObserver() {
-        viewModel.getUsers(this).observe(this, Observer { users ->
-            if (users.isNotEmpty()) {
-                tv_no_favorite.visibility = View.GONE
-
-                userAdapter.notifyDataSetChanged()
-                rv_favorite.scheduleLayoutAnimation()
-
-                userAdapter.setListUser(users)
-            }else{
-                tv_no_favorite.visibility = View.VISIBLE
-            }
-        })
-    }
-
     private fun setupUI() {
         userAdapter = UserAdapter()
 
@@ -56,12 +41,27 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback, U
         rv_favorite.layoutManager = LinearLayoutManager(applicationContext)
         rv_favorite.adapter = userAdapter
 
-        tv_no_favorite.visibility = View.GONE
-
         userAdapter.setDeleteVisible()
         userAdapter.setOnUserClickCallback(this)
         userAdapter.setOnDeleteClickCallback(this)
 
+        tv_no_favorite.visibility = View.GONE
+    }
+
+    private fun viewModelObserver() {
+        viewModel.getUsers(this).observe(this, Observer { users ->
+            if (users.isNotEmpty()) {
+                userAdapter.setListUser(users)
+                userAdapter.notifyDataSetChanged()
+
+                tv_no_favorite.visibility = View.GONE
+            } else {
+                userAdapter.clearUser()
+                userAdapter.notifyDataSetChanged()
+
+                tv_no_favorite.visibility = View.VISIBLE
+            }
+        })
     }
 
     override fun onUserClicked(user: User) {
@@ -72,6 +72,6 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback, U
 
     override fun onDeleteClicked(user: User) {
         viewModel.deleteUser(this, user)
-        Toast.makeText(this, "${user.username} deleted.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "${user.username} deleted.", Toast.LENGTH_SHORT).show()
     }
 }

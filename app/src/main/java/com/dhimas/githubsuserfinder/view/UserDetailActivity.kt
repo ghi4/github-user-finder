@@ -1,14 +1,12 @@
 package com.dhimas.githubsuserfinder.view
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dhimas.githubsuserfinder.R
-import com.dhimas.githubsuserfinder.data.model.User
-import com.dhimas.githubsuserfinder.database.FavoriteDatabase
+import com.dhimas.githubsuserfinder.model.User
 import com.dhimas.githubsuserfinder.view.MainActivity.Companion.KEY_USERNAME
 import com.dhimas.githubsuserfinder.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -22,6 +20,7 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_detail)
 
         val username = intent.getStringExtra(KEY_USERNAME) ?: ""
+
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(UserDetailViewModel::class.java)
         viewModel.setUsername(username)
@@ -39,25 +38,21 @@ class UserDetailActivity : AppCompatActivity() {
             )
         viewPager.adapter = sectionPagerAdapter
         tabs.setupWithViewPager(viewPager)
-
         supportActionBar?.elevation = 0f
 
+        //Set fab not favorite icon
         fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
 
         fab_favorite.setOnClickListener {
-            if(!viewModel.isUserFavorite(this)){
+            if (viewModel.isUserFavorite(this)) {
+                Toast.makeText(this, "Already in favorite list!", Toast.LENGTH_LONG).show()
+            } else {
                 viewModel.saveUser(this)
+                //Set fab favorite icon
                 fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 Toast.makeText(this, "$username added to favorite list.", Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(this, "Already in favorite list!", Toast.LENGTH_LONG).show()
             }
         }
-
-        Picasso.get()
-            .load(R.drawable.octocat1)
-            .resize(120, 120)
-            .into(iv_avatar)
     }
 
     private fun viewModelObserver() {
@@ -77,7 +72,7 @@ class UserDetailActivity : AppCompatActivity() {
         tv_company.text = user.company?.trim() ?: "-"
         tv_location.text = user.location?.trim() ?: "-"
 
-        if(viewModel.isUserFavorite(this))
+        if (viewModel.isUserFavorite(this))
             fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
 
         tabs.getTabAt(0)!!.text = getString(R.string.follower) + "\n(${user.followersCount})"

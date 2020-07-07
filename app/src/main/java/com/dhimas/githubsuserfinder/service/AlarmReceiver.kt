@@ -9,12 +9,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.dhimas.githubsuserfinder.R
 import java.util.*
 
-class AlarmReceiver() : BroadcastReceiver() {
+class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
         private const val ID_REMINDER = 131
@@ -25,8 +24,8 @@ class AlarmReceiver() : BroadcastReceiver() {
     }
 
     private fun showAlarmNotification(context: Context) {
-        val CHANNEL_ID = "REMINDER_1"
-        val CHANNEL_NAME = "Reminder Channel"
+        val channelId = "REMINDER_1"
+        val channelName = "Reminder Channel"
         val title = "Github User Finder"
         val message = "Find other user again!"
         val vibrationPattern = longArrayOf(1000, 1000)
@@ -34,7 +33,7 @@ class AlarmReceiver() : BroadcastReceiver() {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_baseline_apartment_24)
             .setContentTitle(title)
             .setContentText(message)
@@ -43,15 +42,15 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
+                channelId,
+                channelName,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
 
             channel.enableVibration(true)
             channel.vibrationPattern = vibrationPattern
 
-            builder.setChannelId(CHANNEL_ID)
+            builder.setChannelId(channelId)
 
             notificationManager.createNotificationChannel(channel)
         }

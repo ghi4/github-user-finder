@@ -1,8 +1,8 @@
-package com.dhimas.githubsuserfinder.data.api
+package com.dhimas.githubsuserfinder.api
 
-import com.dhimas.githubsuserfinder.data.model.Repo
-import com.dhimas.githubsuserfinder.data.model.SearchResult
-import com.dhimas.githubsuserfinder.data.model.User
+import com.dhimas.githubsuserfinder.model.Repo
+import com.dhimas.githubsuserfinder.model.SearchResult
+import com.dhimas.githubsuserfinder.model.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -18,13 +18,15 @@ interface RetrofitInterface {
     @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
     fun getUserDetail(@Path("username") username: String?): Call<User>
 
-    @GET("users/{username}/{follow}?page=1&per_page=100")
+    @GET("users/{username}/followers?page=1&per_page=100")
     @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
-    fun getUserFollow(
-        @Path("username") username: String,
-        @Path("follow") follow: String
-    ): Call<ArrayList<User>>
+    fun getUserFollowers(@Path("username") username: String): Call<ArrayList<User>>
+
+    @GET("users/{username}/following?page=1&per_page=100")
+    @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
+    fun getUserFollowing(@Path("username") username: String): Call<ArrayList<User>>
 
     @GET("/users/{username}/repos?page=1&per_page=100")
+    @Headers("Authorization: token c1beb69d93d5b0978ec533eed45763e9424e4880")
     fun getUserRepo(@Path("username") username: String): Call<ArrayList<Repo>>
 }

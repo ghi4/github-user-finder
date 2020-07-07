@@ -1,4 +1,4 @@
-package com.dhimas.githubsuserfinder.data.model
+package com.dhimas.githubsuserfinder.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

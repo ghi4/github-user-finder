@@ -8,7 +8,6 @@
     <string name="avatar_photo">Foto profil</string>
     <string name="company_icon">Ikon perusahaan</string>
     <string name="location_icon">Ikon lokasi</string>
-    <string name="language_settings">Ubah Bahasa</string>
     <string name="query_hint">Ketik nama pengguna</string>
     <string name="user_detail">Detil Pengguna</string>
     <string name="no_description">Tidak ada deskripsi</string>
@@ -16,7 +15,6 @@
     <string name="not_following_yet">Belum Mengikuti Siapapun</string>
     <string name="avatar_of_the_user">Foto profil pengguna</string>
     <string name="no_repository_yet">Penyimpanan Masih Kosong</string>
-    <string name="photo_of_octocat_from_github">Foto Octocat dari Github</string>
     <string name="favorite">Favorit</string>
     <string name="setting">Pengaturan</string>
     <string name="favorite_user">Pengguna Favorit</string>
@@ -25,4 +23,7 @@
     <string name="language">Bahasa Indonesia</string>
     <string name="language_title">Bahasa</string>
     <string name="reminder_text">Pengingat pada jam 09:00 pagi</string>
+    <string name="reminder_toast_activated">Pengingat pada jam 09:00 pagi diaktifkan</string>
+    <string name="reminder_toast_canceled">Pengingat pada jam 09:00 pagi dibatalkan</string>
+    <string name="delete_button">Tombol hapus</string>
 </resources>
