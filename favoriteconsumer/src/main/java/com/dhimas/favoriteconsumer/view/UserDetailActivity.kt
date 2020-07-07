@@ -1,6 +1,7 @@
 package com.dhimas.favoriteconsumer.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -56,6 +57,8 @@ class UserDetailActivity : AppCompatActivity() {
         tv_username.text = user.username?.trim() ?: "-"
         tv_company.text = user.company?.trim() ?: "-"
         tv_location.text = user.location?.trim() ?: "-"
+
+        fab_favorite.visibility = View.GONE
 
         tabs.getTabAt(0)!!.text = getString(R.string.follower) + "\n(${user.followersCount})"
         tabs.getTabAt(1)!!.text = getString(R.string.following) + "\n(${user.followingCount})"

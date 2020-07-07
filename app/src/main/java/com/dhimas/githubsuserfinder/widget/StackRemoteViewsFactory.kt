@@ -1,14 +1,15 @@
-package com.dhimas.githubsuserfinder
+package com.dhimas.githubsuserfinder.widget
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import com.dhimas.githubsuserfinder.R
 import com.dhimas.githubsuserfinder.database.FavoriteDatabase
 import com.squareup.picasso.Picasso
 
 class StackRemoteViewsFactory(val context: Context): RemoteViewsService.RemoteViewsFactory {
-    private val listFavoriteUser = ArrayList<Bitmap>()
+    private val listAvatarUser = ArrayList<Bitmap>()
 
     override fun onCreate() {
 
@@ -24,7 +25,7 @@ class StackRemoteViewsFactory(val context: Context): RemoteViewsService.RemoteVi
         val targetHeight = 480
 
         listUser.forEach {
-            listFavoriteUser.add(
+            listAvatarUser.add(
                 Picasso.get()
                     .load(it.avatarUrl)
                     .resize(targetWidth, targetHeight)
@@ -34,13 +35,15 @@ class StackRemoteViewsFactory(val context: Context): RemoteViewsService.RemoteVi
     }
 
     override fun getViewAt(position: Int): RemoteViews {
-        val rv = RemoteViews(context.packageName, R.layout.item_widget_favorite_user)
-        rv.setImageViewBitmap(R.id.imageView, listFavoriteUser[position])
+        val rv = RemoteViews(context.packageName,
+            R.layout.item_widget_favorite_user
+        )
+        rv.setImageViewBitmap(R.id.iv_banner, listAvatarUser[position])
 
         return rv
     }
 
-    override fun getCount(): Int = listFavoriteUser.size
+    override fun getCount(): Int = listAvatarUser.size
 
     override fun getViewTypeCount(): Int = 1
 

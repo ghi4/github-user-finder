@@ -12,6 +12,9 @@ interface UserDao {
     @Query("SELECT * FROM User")
     fun cursorGetAll(): Cursor
 
+    @Query("SELECT * FROM User WHERE uid = :id")
+    fun cursorGetById(id: String): Cursor
+
     @Query("SELECT * FROM User")
     fun getAll(): List<User>
 
@@ -19,7 +22,7 @@ interface UserDao {
     fun getById(id: Int): List<User>
 
     @Query("DELETE FROM User WHERE uid = :id")
-    fun deleteById(id: Long)
+    fun deleteById(id: String)
 
     @Insert
     fun insert(vararg user: User)

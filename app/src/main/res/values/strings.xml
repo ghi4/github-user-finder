@@ -26,4 +26,9 @@
     <string name="favorite_banner">Favorite User</string>
     <string name="no_favorite_user">No Favorite User</string>
     <string name="favorite_user_photo">Favorite User Photo</string>
+    <string name="already_in_favorite">Already in favorite list!</string>
+    <string name="added_to_favorite">added to favorite list.</string>
+    <string name="reminder_activated">Reminder at 09:00 AM activated</string>
+    <string name="reminder_canceled">Reminder at 09:00 AM canceled</string>
+
 </resources>

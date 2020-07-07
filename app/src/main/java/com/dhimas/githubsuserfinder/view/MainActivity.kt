@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
     private lateinit var userAdapter: UserAdapter
 
     companion object {
+        //Key Intent to Detail Activity
         const val KEY_USERNAME: String = "KEY_USERNAME"
     }
 

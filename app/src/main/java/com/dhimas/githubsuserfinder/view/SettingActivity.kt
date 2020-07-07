@@ -43,10 +43,14 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
     override fun onCheckedChanged(p0: CompoundButton?, isOn: Boolean) {
         if (isOn) {
             alarmReceiver.setAlarm(this)
-            Toast.makeText(this, "Reminder at 09:00 AM activated", Toast.LENGTH_LONG).show()
+
+            val message = getString(R.string.reminder_activated)
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         } else {
             alarmReceiver.cancelAlarm(this)
-            Toast.makeText(this, "Reminder at 09:00 AM canceled", Toast.LENGTH_LONG).show()
+
+            val message = getString(R.string.reminder_canceled)
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
     }
 }

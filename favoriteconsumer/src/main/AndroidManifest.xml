@@ -3,6 +3,7 @@
     package="com.dhimas.favoriteconsumer">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-permission android:name="com.dhimas.githubsuserfinder.READ_DATABASE"/>
     <uses-permission android:name="com.dhimas.githubsuserfinder.WRITE_DATABASE"/>
 
@@ -22,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.UserDetailActivity"/>
+        <activity android:name=".view.UserDetailActivity"
+            android:label="User Detail"
+            android:parentActivityName=".view.FavoriteActivity"/>
     </application>
 
 </manifest>

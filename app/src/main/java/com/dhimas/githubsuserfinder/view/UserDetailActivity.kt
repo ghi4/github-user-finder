@@ -45,12 +45,17 @@ class UserDetailActivity : AppCompatActivity() {
 
         fab_favorite.setOnClickListener {
             if (viewModel.isUserFavorite(this)) {
-                Toast.makeText(this, "Already in favorite list!", Toast.LENGTH_LONG).show()
+                val message = getString(R.string.already_in_favorite)
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             } else {
+                //Add user to favorite list
                 viewModel.saveUser(this)
+
                 //Set fab favorite icon
                 fab_favorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Toast.makeText(this, "$username added to favorite list.", Toast.LENGTH_LONG).show()
+
+                val message = "$username " + getString(R.string.added_to_favorite)
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -62,10 +67,12 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun loadToView(user: User) {
+        val targetWidth = 120
+        val targetHeight = 120
         Picasso.get()
             .load(user.avatarUrl)
             .placeholder(R.drawable.octocat1)
-            .resize(120, 120)
+            .resize(targetWidth, targetHeight)
             .into(iv_avatar)
         tv_name.text = user.name?.trim() ?: "-"
         tv_username.text = user.username?.trim() ?: "-"
@@ -79,10 +86,4 @@ class UserDetailActivity : AppCompatActivity() {
         tabs.getTabAt(1)!!.text = getString(R.string.following) + "\n(${user.followingCount})"
         tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
     }
-
-    override fun onBackPressed() {
-        finish()
-        super.onBackPressed()
-    }
-
 }

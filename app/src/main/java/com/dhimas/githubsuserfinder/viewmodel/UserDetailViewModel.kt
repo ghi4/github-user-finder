@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dhimas.githubsuserfinder.StackRemoteViewsFactory
 import com.dhimas.githubsuserfinder.api.RetrofitFactory
 import com.dhimas.githubsuserfinder.model.User
 import com.dhimas.githubsuserfinder.database.FavoriteDatabase

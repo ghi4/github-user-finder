@@ -24,6 +24,7 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
         listUser.clear()
     }
 
+    //Used for favorite activity which used for delete purpose
     fun setDeleteVisible() {
         deleteVisible = true
     }

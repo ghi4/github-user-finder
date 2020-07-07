@@ -24,7 +24,11 @@
     <string name="language_title">Bahasa</string>
     <string name="reminder_text">Pengingat pada jam 09:00 pagi</string>
     <string name="delete_button">Tombol hapus</string>
-    <string name="favorite_banner">Pengguna Favoritr</string>
+    <string name="favorite_banner">Pengguna Favorit</string>
     <string name="no_favorite_user">Tidak Ada User Favorit</string>
     <string name="favorite_user_photo">Foto Pengguna Favorit</string>
+    <string name="already_in_favorite">Sudah masuk ke daftar favorit!</string>
+    <string name="added_to_favorite">dimasukkan ke daftar favorit.</string>
+    <string name="reminder_activated">Pengingat pada jam 09:00 diaktifkan</string>
+    <string name="reminder_canceled">Pengingat pada jam 09:00 dinonaktifkan</string>
 </resources>
