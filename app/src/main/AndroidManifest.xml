@@ -20,6 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".FavoriteStackWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_stack_widget_info" />
+        </receiver>
+
         <provider
             android:name=".provider.FavoriteContentProvider"
             android:authorities="com.dhimas.githubsuserfinder"

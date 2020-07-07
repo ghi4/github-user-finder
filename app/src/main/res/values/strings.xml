@@ -25,4 +25,8 @@
     <string name="reminder_toast_activated">Reminder at 09:00 AM activated</string>
     <string name="reminder_toast_canceled">Reminder at 09:00 AM canceled</string>
     <string name="delete_button">Delete button</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="favorite_banner">Favorite User</string>
+    <string name="no_favorite_user">No Favorite User</string>
 </resources>
