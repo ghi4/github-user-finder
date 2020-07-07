@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
-        android:name="READ_DATABASE"
+        android:name="com.dhimas.githubsuserfinder.READ_DATABASE"
         android:protectionLevel="normal" />
     <uses-permission
-        android:name="WRITE_DATABASE"
+        android:name="com.dhimas.githubsuserfinder.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application

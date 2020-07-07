@@ -25,12 +25,17 @@ import kotlinx.coroutines.launch
 
 class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
     UserAdapter.OnDeleteClickCallback {
-    private lateinit var contentUri: Uri
+
     private lateinit var viewModel: FavoriteViewModel
     private lateinit var userAdapter: UserAdapter
 
     companion object {
         const val KEY_USERNAME: String = "KEY_USERNAME"
+
+        val contentUri: Uri = Uri.Builder().scheme("content")
+        .authority("com.dhimas.githubsuserfinder")
+        .appendPath("User")
+        .build()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +45,7 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
         //viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
         //    .get(FavoriteViewModel::class.java)
 
-        contentUri = Uri.Builder().scheme("content")
-            .authority("com.dhimas.githubsuserfinder")
-            .appendPath("User")
-            .build()
+
 
         val handlerThread = HandlerThread("DataObserver")
         handlerThread.start()

@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.dhimas.githubsuserfinder.R
+import com.dhimas.githubsuserfinder.view.MainActivity
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -55,6 +56,12 @@ class AlarmReceiver : BroadcastReceiver() {
             notificationManager.createNotificationChannel(channel)
         }
 
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent = PendingIntent.getActivity(context, ID_REMINDER, intent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        builder.setContentIntent(pendingIntent)
         notificationManager.notify(ID_REMINDER, builder.build())
     }
 
@@ -63,8 +70,8 @@ class AlarmReceiver : BroadcastReceiver() {
         val intent = Intent(context, AlarmReceiver::class.java)
 
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 9)
-        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.HOUR_OF_DAY, 17)
+        calendar.set(Calendar.MINUTE, 37)
         calendar.set(Calendar.SECOND, 0)
 
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REMINDER, intent, 0)
