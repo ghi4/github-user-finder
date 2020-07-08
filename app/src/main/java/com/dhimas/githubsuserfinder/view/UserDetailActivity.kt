@@ -72,6 +72,7 @@ class UserDetailActivity : AppCompatActivity() {
         Picasso.get()
             .load(user.avatarUrl)
             .placeholder(R.drawable.octocat1)
+            .error(R.drawable.avatar_eror)
             .resize(targetWidth, targetHeight)
             .into(iv_avatar)
         tv_name.text = user.name?.trim() ?: "-"

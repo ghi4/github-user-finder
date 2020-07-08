@@ -1,10 +1,7 @@
 package com.dhimas.githubsuserfinder.database
 
 import android.database.Cursor
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.dhimas.githubsuserfinder.model.User
 
 @Dao
@@ -25,7 +22,10 @@ interface UserDao {
     fun deleteById(id: String)
 
     @Insert
-    fun insert(vararg user: User)
+    fun insert(vararg user: User?)
+
+    @Update
+    fun update(user: User?)
 
     @Delete
     fun delete(user: User)

@@ -29,22 +29,6 @@ class UserDetailViewModel : ViewModel() {
         })
     }
 
-//    fun isUserFavorite(context: Context): Boolean {
-//        val dao = FavoriteDatabase.getInstance(context).userDao()
-//        val user = user.value as User
-//
-//        return dao.getById(user.uid.toInt()).isNotEmpty()
-//    }
-//
-//    fun saveUser(context: Context) {
-//        val dao = FavoriteDatabase.getInstance(context).userDao()
-//        val user = user.value as User
-//
-//        if (dao.getById(user.uid.toInt()).isEmpty()) {
-//            dao.insert(user)
-//        }
-//    }
-
     fun getUser() = user
 
 }

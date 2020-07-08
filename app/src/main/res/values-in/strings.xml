@@ -31,4 +31,5 @@
     <string name="added_to_favorite">dimasukkan ke daftar favorit.</string>
     <string name="reminder_activated">Pengingat pada jam 09:00 diaktifkan</string>
     <string name="reminder_canceled">Pengingat pada jam 09:00 dinonaktifkan</string>
+    <string name="search_first">Cari pengguna dahulu.</string>
 </resources>

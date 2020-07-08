@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dhimas.githubsuserfinder.api.RetrofitFactory
-import com.dhimas.githubsuserfinder.model.User
 import com.dhimas.githubsuserfinder.database.FavoriteDatabase
+import com.dhimas.githubsuserfinder.helper.DatabaseContract.FavoriteUserColumn.Companion.CONTENT_URI
+import com.dhimas.githubsuserfinder.helper.MappingHelper
+import com.dhimas.githubsuserfinder.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,12 +41,8 @@ class UserDetailViewModel : ViewModel() {
     }
 
     fun saveUser(context: Context) {
-        val dao = FavoriteDatabase.getInstance(context).userDao()
-        val user = user.value as User
-
-        if (dao.getById(user.uid.toInt()).isEmpty()) {
-            dao.insert(user)
-        }
+        val values = MappingHelper.mapUserToValues(user.value as User)
+        context.contentResolver.insert(CONTENT_URI, values)
     }
 
     fun getUser() = user

@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
                 if (!keyword.isNullOrEmpty()) {
                     progressBar.visibility = View.VISIBLE
                     tv_no_user.visibility = View.GONE
+                    tv_search_first.visibility = View.GONE
 
-                    showOctocat(viewModel.getBoolOctocat().value!!)
                     viewModel.setBoolOctocatFalse()
 
                     viewModel.setKeyword(keyword)
@@ -110,9 +110,5 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback {
         val intent = Intent(this, UserDetailActivity::class.java)
         intent.putExtra(KEY_USERNAME, user.username)
         startActivity(intent)
-    }
-
-    private fun showOctocat(bool: Boolean) {
-
     }
 }

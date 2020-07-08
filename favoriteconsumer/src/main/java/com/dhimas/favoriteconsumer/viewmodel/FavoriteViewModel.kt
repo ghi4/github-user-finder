@@ -2,14 +2,14 @@ package com.dhimas.favoriteconsumer.viewmodel
 
 import android.content.Context
 import android.database.ContentObserver
+import android.net.Uri
 import android.os.Handler
 import android.os.HandlerThread
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dhimas.favoriteconsumer.helper.DatabaseContract.FavoriteUserColumn.Companion.CONTENT_URI
 import com.dhimas.favoriteconsumer.helper.MappingHelper
 import com.dhimas.favoriteconsumer.model.User
-import com.dhimas.favoriteconsumer.view.FavoriteActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -21,47 +21,49 @@ class FavoriteViewModel : ViewModel() {
     fun getUsers(context: Context): MutableLiveData<ArrayList<User>> {
         if (listUser == null) {
             listUser = MutableLiveData()
-            loadUserDirect(context)
+            loadUserMain(context)
         }
         return listUser as MutableLiveData<ArrayList<User>>
     }
 
-    fun loadUserMain(context: Context){
+    private fun loadUserMain(context: Context) {
         val handlerThread = HandlerThread("DataObserver")
         handlerThread.start()
         val handler = Handler(handlerThread.looper)
 
-        Log.d("Info", "1")
+        //Load for first-time
+        loadUser(context)
 
-        val myObserver = object : ContentObserver(handler){
-            override fun onChange(self: Boolean){
-                Log.d("Info", "2")
+        //Load for data change
+        val myObserver = object : ContentObserver(handler) {
+            override fun onChange(self: Boolean) {
                 loadUserAsync(context)
             }
         }
 
-        Log.d("Info", "3")
-        context.contentResolver.registerContentObserver(FavoriteActivity.contentUri, true, myObserver)
+        context.contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
     }
 
-    fun loadUserAsync(context: Context){
-        Log.d("Info", "5")
+    fun loadUserAsync(context: Context) {
         GlobalScope.launch(Dispatchers.Main) {
-            Log.d("Info", "6")
             val deferredFavorite = async(Dispatchers.IO) {
-                Log.d("Info", "7")
-                val cursor = context.contentResolver?.query(FavoriteActivity.contentUri, null, null, null, null)
+                val cursor = context.contentResolver?.query(CONTENT_URI, null, null, null, null)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
 
             val favoriteUsers = deferredFavorite.await()
-            Log.d("Info", "8: " + favoriteUsers.size )
+
             listUser!!.postValue(favoriteUsers)
         }
     }
 
-    private fun loadUserDirect(context: Context) {
-        val cursor = context.contentResolver?.query(FavoriteActivity.contentUri, null, null, null, null)
+    private fun loadUser(context: Context) {
+        val cursor = context.contentResolver?.query(CONTENT_URI, null, null, null, null)
         listUser!!.postValue(MappingHelper.mapCursorToArrayList(cursor))
+    }
+
+    fun deleteUser(context: Context, user: User) {
+        val uriWithId = Uri.parse(CONTENT_URI.toString() + "/${user.uid}")
+        context.contentResolver.delete(uriWithId, null, null)
     }
 }

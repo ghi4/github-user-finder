@@ -26,7 +26,7 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
         setupUI()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         tv_language_title.setOnClickListener(this)
         tv_language.setOnClickListener(this)
     }

@@ -1,9 +1,7 @@
 package com.dhimas.favoriteconsumer.view
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,11 +22,6 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
 
     companion object {
         const val KEY_USERNAME: String = "KEY_USERNAME"
-
-        val contentUri: Uri = Uri.Builder().scheme("content")
-        .authority("com.dhimas.githubsuserfinder")
-        .appendPath("User")
-        .build()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +42,7 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
         rv_favorite.layoutManager = LinearLayoutManager(applicationContext)
         rv_favorite.adapter = userAdapter
 
+        userAdapter.setDeleteVisible()
         userAdapter.setOnUserClickCallback(this)
         userAdapter.setOnDeleteClickCallback(this)
 
@@ -60,7 +54,6 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
             if (users.isNotEmpty()) {
                 userAdapter.setListUser(users)
                 userAdapter.notifyDataSetChanged()
-                Log.d("Info", "" + users.size)
 
                 tv_no_favorite.visibility = View.GONE
             } else {
@@ -79,7 +72,7 @@ class FavoriteActivity : AppCompatActivity(), UserAdapter.OnUserClickCallback,
     }
 
     override fun onDeleteClicked(user: User) {
-//        viewModel.deleteUser(this, user)
+        viewModel.deleteUser(this, user)
         Toast.makeText(this, "${user.username} deleted.", Toast.LENGTH_SHORT).show()
     }
 }

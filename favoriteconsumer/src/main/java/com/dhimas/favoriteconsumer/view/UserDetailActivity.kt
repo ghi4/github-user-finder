@@ -65,9 +65,4 @@ class UserDetailActivity : AppCompatActivity() {
         tabs.getTabAt(2)!!.text = getString(R.string.repository) + "\n(${user.repoCount})"
     }
 
-    override fun onBackPressed() {
-        finish()
-        super.onBackPressed()
-    }
-
 }

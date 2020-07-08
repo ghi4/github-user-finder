@@ -57,7 +57,4 @@ class MainViewModel : ViewModel() {
         boolOctocat.value = false
     }
 
-    fun getBoolOctocat(): MutableLiveData<Boolean> {
-        return boolOctocat
-    }
 }

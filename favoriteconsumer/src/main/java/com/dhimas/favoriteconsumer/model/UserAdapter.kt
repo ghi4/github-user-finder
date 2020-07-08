@@ -50,10 +50,13 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
             with(itemView) {
+                val targetWidth = 60
+                val targetHeight = 60
                 Picasso.get()
                     .load(user.avatarUrl)
-                    .resize(60, 60)
                     .placeholder(R.drawable.octocat1)
+                    .error(R.drawable.avatar_error)
+                    .resize(targetWidth, targetHeight)
                     .into(iv_avatar)
                 tv_username.text = user.username
 
